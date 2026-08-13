@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Catálogo completo de muebles artesanales Hermanos Jota. Buscá y encontrá la pieza ideal para tu hogar."
+    />
+    <title>Productos — Hermanos Jota</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/catalogo.css" />
+  </head>
+  <body data-page="productos">
+    <header class="site-header"></header>
+
+    <main>
+      <div class="page-header">
+        <div class="container">
+          <h1>Nuestro Catálogo</h1>
+          <p>Mobiliario artesanal con diseño atemporal y materiales sustentables.</p>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="container">
+          <div class="catalog-toolbar">
+            <div class="search-box">
+              <input
+                type="search"
+                id="search-input"
+                placeholder="Buscar por nombre, material…"
+                aria-label="Buscar productos"
+              />
+            </div>
+            <p id="catalog-count" class="catalog-meta"></p>
+          </div>
+          <div id="catalog-loader" class="loader">Cargando catálogo…</div>
+          <div id="catalog-grid" class="product-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"></footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/catalogo.js"></script>
+  </body>
+</html>
