@@ -36,6 +36,10 @@ function actualizarContadorCarrito() {
     contador.textContent = total;
     contador.hidden = total === 0;
   }
+
+  if (typeof renderizarCarrito === "function") {
+    renderizarCarrito();
+  }
 }
 
 function agregarAlCarrito(productoId) {
@@ -59,6 +63,10 @@ function agregarAlCarrito(productoId) {
 
   guardarCarrito(carrito);
   actualizarContadorCarrito();
+
+  if (typeof renderizarCarrito === "function") {
+    renderizarCarrito();
+  }
 }
 
 async function obtenerProductos() {
@@ -148,11 +156,20 @@ function renderizarHeader() {
 
   const toggle = header.querySelector(".nav-toggle");
   const nav = header.querySelector(".main-nav");
+  const cartButton = header.querySelector(".cart-btn");
 
   toggle.addEventListener("click", () => {
     const abierto = nav.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", String(abierto));
   });
+
+  if (cartButton) {
+    cartButton.addEventListener("click", () => {
+      if (typeof abrirCarrito === "function") {
+        abrirCarrito();
+      }
+    });
+  }
 
   actualizarContadorCarrito();
 }
