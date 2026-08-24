@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/contacto.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="" class="form" id="formContacto">
+        <h3>Formulario de consulta</h3>
+
+        <div class="group">
+          <label for="nombre">Nombre completo *</label>
+          <input type="text" id="nombre" name="nombre" />
+          <p class="error" id="errorNombre"></p>
+        </div>
+
+        <div class="group">
+          <label for="email">Email *</label>
+          <input type="email" name="email" id="email" />
+          <p class="error" id="errorEmail"></p>
+        </div>
+
+        <div class="group">
+          <label for="mensaje"> Mensaje *</label>
+          <textarea name="mensaje" id="mensaje" maxlength="200"></textarea>
+          <p id="contadorMensaje" class="contadorMensaje"></p>
+          <p class="error" id="errorMensaje"></p>
+        </div>
+
+        <p id="mensajeExito" class="mensajeExito"></p>
+        <button type="submit" class="buttonSummit">Enviar</button>
+      </form>
+    </div>
+    <script src="/js/contacto.js"></script>
+  </body>
+</html>

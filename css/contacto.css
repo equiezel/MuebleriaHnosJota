@@ -1,0 +1,81 @@
+@import "./styles.css";
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-primary);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 30rem;
+  padding: 2rem;
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.233);
+}
+.form h3 {
+  color: white;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  color: white;
+}
+.group label {
+  font-size: 0.8rem;
+}
+
+.group input,
+textarea {
+  border-radius: 5px;
+  border: 1.4px solid rgba(0, 0, 0, 0.507);
+  font-size: 0.6rem;
+  font-weight: 300;
+  padding: 0.4rem;
+  box-sizing: border-box;
+}
+.group input {
+  height: 1.5rem;
+}
+.group textarea {
+  height: 3.5rem;
+}
+.contadorMensaje {
+  font-size: 0.6rem;
+  text-align: end;
+}
+.buttonSummit {
+  width: 80%;
+  border-radius: 5px;
+  background-color: var(--color-primary);
+  border: none;
+  height: 2rem;
+  color: white;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.buttonSummit:hover {
+  background-color: var(--color-accent-gold);
+}
+.mensajeExito {
+  color: rgb(3, 77, 3);
+}
+.error {
+  font-size: 0.6rem;
+  color: rgb(196, 4, 4);
+}
+@media (max-width: 730px) {
+  .form {
+    width: 90%;
+  }
+  .group {
+    width: 100%;
+  }
+}
