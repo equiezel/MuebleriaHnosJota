@@ -43,7 +43,7 @@ function contarUnidadesDelCarrito() {
 }
 
 // Escribe el número y apaga el globito cuando está en cero.
-function actualizarContadorHeader() {
+function actualizarContadorCarrito() {
   if (contadorCarrito === null) {
     return;
   }
@@ -59,19 +59,27 @@ function actualizarContadorHeader() {
   }
 }
 
-if (botonCarrito !== null) {
-  // El botón viene deshabilitado del HTML porque todavía no hay panel
-  // que abrir. Se habilita solo cuando exista abrirCarrito().
-  if (typeof window.abrirCarrito === "function") {
-    botonCarrito.disabled = false;
-
-    botonCarrito.addEventListener("click", function () {
-      window.abrirCarrito();
-    });
+// El botón viene deshabilitado del HTML porque todavía no hay panel que abrir.
+// La comprobación va acá adentro y no suelta: si fuera suelta correría antes
+// de que se cargue js/carrito.js y el botón quedaría deshabilitado para
+// siempre. Con DOMContentLoaded ya se ejecutaron todos los <script>.
+document.addEventListener("DOMContentLoaded", function () {
+  if (botonCarrito === null) {
+    return;
   }
-}
+
+  if (typeof window.abrirCarrito !== "function") {
+    return;
+  }
+
+  botonCarrito.disabled = false;
+
+  botonCarrito.addEventListener("click", function () {
+    window.abrirCarrito();
+  });
+});
 
 // Para que otros archivos puedan refrescar el número.
-window.actualizarContadorHeader = actualizarContadorHeader;
+window.actualizarContadorCarrito = actualizarContadorCarrito;
 
-actualizarContadorHeader();
+actualizarContadorCarrito();
