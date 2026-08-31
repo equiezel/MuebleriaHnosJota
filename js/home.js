@@ -27,7 +27,7 @@ function precioEnPesos(precio) {
 function crearEsqueleto() {
   const tarjeta = document.createElement("article");
   tarjeta.className = "producto-card producto-card--esqueleto";
-
+  tarjeta.setAttribute("aria-hidden", "true");
   const figura = document.createElement("div");
   figura.className = "producto-card__figura";
 
