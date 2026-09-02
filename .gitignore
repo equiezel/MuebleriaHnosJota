@@ -1,0 +1,50 @@
+# Sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Editores e IDEs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Dependencias
+node_modules/
+jspm_packages/
+bower_components/
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# Builds y temporales
+dist/
+build/
+.cache/
+tmp/
+temp/
+*.tmp
+
+# Archivos de respaldo
+*.bak
+*.orig
+*.rej

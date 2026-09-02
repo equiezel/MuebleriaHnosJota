@@ -5,7 +5,7 @@ Sitio de e-commerce para una mueblería artesanal, desarrollado como trabajo pr�
 ## Integrantes
 
 - P1 — Nombre y apellido
-- P2 — Nombre y apellido
+- P2 — Augusto Freire
 - P3 — Nombre y apellido
 - P4 — Nombre y apellido
 - P5 — Nombre y apellido
