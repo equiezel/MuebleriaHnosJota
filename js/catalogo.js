@@ -59,11 +59,12 @@ const renderProducts = (products) => {
 
 			return `
 				<article class="product-card">
-					<a class="product-card__link" href="producto.html?id=${id}" aria-label="Ver detalle de ${nombre}">
-						<div class="product-card__image-wrap">
+					<div class="product-card__image-wrap">
+						<a class="product-card__link" href="producto.html?id=${id}" aria-label="Ver detalle de ${nombre}">
 							<img src="${imagen}" alt="${nombre}" loading="lazy">
 							${destacado}
-						</div>
+						</a>
+					</div>
 						<div class="product-card__content">
 							<div>
 								<h2>${nombre}</h2>
@@ -71,13 +72,34 @@ const renderProducts = (products) => {
 							</div>
 							<div class="product-card__footer">
 								<strong>${formatPrice(precio)}</strong>
-								<span>Ver detalle <span aria-hidden="true">→</span></span>
+								<a href="producto.html?id=${id}">Ver detalle <span aria-hidden="true">→</span></a>
+								<button class="product-card__add" type="button" data-add-to-cart="${id}">Agregar</button>
 							</div>
 						</div>
-					</a>
 				</article>`;
 		})
 		.join("");
+
+	document.querySelectorAll("[data-add-to-cart]").forEach((button) => {
+		button.addEventListener("click", () => {
+			const product = productos.find((item) => item.id === button.dataset.addToCart);
+			if (!product) return;
+
+			const cart = obtenerCarrito();
+			const existing = cart.find((item) => item.id === product.id);
+			if (existing) {
+				existing.cantidad += 1;
+			} else {
+				cart.push({ ...product, cantidad: 1 });
+			}
+			guardarCarrito(cart);
+			actualizarContadorCarrito();
+			button.textContent = "Agregado";
+			window.setTimeout(() => {
+				button.textContent = "Agregar";
+			}, 1400);
+		});
+	});
 };
 
 const filterProducts = (query) => {

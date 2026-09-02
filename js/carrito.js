@@ -1,3 +1,24 @@
+function obtenerCarrito() {
+  try {
+    const carrito = JSON.parse(localStorage.getItem("carritoHermanosJota") || "[]");
+    return Array.isArray(carrito) ? carrito : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function guardarCarrito(carrito) {
+  localStorage.setItem("carritoHermanosJota", JSON.stringify(carrito));
+}
+
+function formatearPrecio(precio) {
+  return new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+    maximumFractionDigits: 0,
+  }).format(precio);
+}
+
 function crearMarkupCarrito() {
   const carrito = obtenerCarrito();
 
