@@ -85,7 +85,7 @@ body {
 }
 
 .quantity-control {
-	align-items: center;
+	align-items: stretch;
 	border: 1px solid var(--color-primary);
 	display: flex;
 	flex-shrink: 0;
@@ -93,11 +93,17 @@ body {
 
 .quantity-control button,
 .quantity-control output {
+	align-items: center;
 	background: transparent;
 	border: 0;
 	color: var(--color-text-dark);
+	display: inline-flex;
 	font: inherit;
 	height: clamp(2.5rem, 6vw, 3.1rem);
+	justify-content: center;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
 	text-align: center;
 	width: clamp(2rem, 5vw, 2.6rem);
 }

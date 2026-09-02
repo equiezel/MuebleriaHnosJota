@@ -54,35 +54,31 @@ function renderProduct() {
 	bindProductActions();
 }
 
-function getCart() {
-	try {
-		return JSON.parse(localStorage.getItem("carritoHermanosJota") || "[]");
-	} catch {
-		return [];
-	}
-}
+const CANTIDAD_MINIMA = 1;
 
-function updateCartCount() {
-	const count = getCart().reduce((total, item) => total + item.cantidad, 0);
-	const counter = document.querySelector("#contador-carrito");
-
-	if (counter) {
-		counter.textContent = count;
-	}
+function setQuantityDisplay(output, quantity) {
+	output.value = quantity;
+	output.textContent = quantity;
 }
 
 function addToCart(quantity) {
-	const cart = getCart();
+	const unidades = Math.max(CANTIDAD_MINIMA, Math.floor(Number(quantity)) || CANTIDAD_MINIMA);
+	const cart = obtenerCarrito();
 	const existing = cart.find((item) => item.id === product.id);
 
 	if (existing) {
-		existing.cantidad += quantity;
+		existing.cantidad = (Number(existing.cantidad) || 0) + unidades;
 	} else {
-		cart.push({ ...product, cantidad: quantity });
+		cart.push({ ...product, cantidad: unidades });
 	}
 
-	localStorage.setItem("carritoHermanosJota", JSON.stringify(cart));
-	updateCartCount();
+	guardarCarrito(cart);
+	actualizarContadorCarrito();
+
+	if (typeof renderizarCarrito === "function") {
+		renderizarCarrito();
+	}
+
 	const button = document.querySelector("#add-to-cart");
 	button.textContent = "Agregado";
 	window.setTimeout(() => {
@@ -91,23 +87,26 @@ function addToCart(quantity) {
 }
 
 function bindProductActions() {
-	let quantity = 1;
+	let quantity = CANTIDAD_MINIMA;
 	const quantityOutput = document.querySelector("#quantity");
 
 	document.querySelectorAll("[data-quantity]").forEach((button) => {
 		button.addEventListener("click", () => {
 			quantity = button.dataset.quantity === "increase"
 				? quantity + 1
-				: Math.max(1, quantity - 1);
-			quantityOutput.value = quantity;
-			quantityOutput.textContent = quantity;
+				: Math.max(CANTIDAD_MINIMA, quantity - 1);
+			setQuantityDisplay(quantityOutput, quantity);
 		});
 	});
 
-	document.querySelector("#add-to-cart").addEventListener("click", () => addToCart(quantity));
+	document.querySelector("#add-to-cart").addEventListener("click", () => {
+		addToCart(quantity);
+		quantity = CANTIDAD_MINIMA;
+		setQuantityDisplay(quantityOutput, quantity);
+	});
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	renderProduct();
-	updateCartCount();
+	actualizarContadorCarrito();
 });
