@@ -1,0 +1,252 @@
+@import "./styles.css";
+
+.container {
+  height: 90vh;
+  min-height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(212, 164, 55, 0.18),
+      transparent 35%
+    ),
+    var(--color-bg-main);
+}
+
+.form {
+  width: min(100%, 32rem);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  padding: 2.5rem;
+
+  background-color: var(--color-white);
+
+  border: 1px solid rgba(160, 82, 45, 0.12);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-md);
+
+  box-sizing: border-box;
+}
+
+/* ─────────────
+   TÍTULO
+───────────── */
+
+.form h3 {
+  width: 100%;
+  margin: 0 0 0.5rem;
+
+  color: var(--color-text-dark);
+
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+/* ─────────────
+   CAMPOS
+───────────── */
+
+.group {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  color: var(--color-text-dark);
+}
+
+.group label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Inputs y textarea */
+
+.group input,
+.group textarea {
+  width: 100%;
+
+  padding: 0.3rem 0.85rem;
+
+  box-sizing: border-box;
+
+  background-color: #fff;
+
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+
+  color: var(--color-text-dark);
+
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+
+  outline: none;
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition);
+}
+
+/* Altura */
+
+.group input {
+  height: 2.8rem;
+}
+
+.group textarea {
+  min-height: 5rem;
+
+  resize: vertical;
+}
+
+/* Placeholder */
+
+.group input::placeholder,
+.group textarea::placeholder {
+  color: #aaa;
+}
+
+/* Focus */
+
+.group input:focus,
+.group textarea:focus {
+  border-color: var(--color-primary);
+
+  background-color: #fff;
+
+  box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.12);
+}
+
+/* ─────────────
+   CONTADOR
+───────────── */
+
+.contadorMensaje {
+  margin: 0;
+
+  color: #888;
+
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+
+  text-align: right;
+}
+
+/* ─────────────
+   ERRORES
+───────────── */
+
+.error {
+  min-height: 0.9rem;
+
+  margin: 0;
+
+  color: #c0392b;
+
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+}
+
+/* ─────────────
+   MENSAJE ÉXITO
+───────────── */
+
+.mensajeExito {
+  margin: 0;
+
+  color: #287a3e;
+
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  text-align: center;
+}
+
+/* ─────────────
+   BOTÓN
+───────────── */
+
+.buttonSummit {
+  width: 100%;
+  height: 4.8rem;
+
+  /* margin-top: 0.25rem; */
+
+  border: none;
+  border-radius: var(--radius-sm);
+
+  background-color: var(--color-primary);
+
+  color: var(--color-white);
+
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: auto;
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.buttonSummit:hover {
+  background-color: #8f4727;
+
+  box-shadow: 0 4px 12px rgba(160, 82, 45, 0.25);
+
+  transform: translateY(-1px);
+}
+
+.buttonSummit:active {
+  transform: translateY(0);
+}
+
+/* ─────────────
+   RESPONSIVE
+───────────── */
+
+@media (max-width: 730px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .form {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+
+  .form h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .form {
+    padding: 1.5rem 1rem;
+  }
+
+  .form h3 {
+    font-size: 1.35rem;
+  }
+}
