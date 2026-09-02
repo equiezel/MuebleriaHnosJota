@@ -58,6 +58,12 @@
 
 /* --- Texto y compra --- */
 
+/* Ficha vacía mientras corre la espera simulada. La galería ya tiene su
+   aspect-ratio, así que sola reserva el alto de la imagen. */
+.product-gallery--esqueleto {
+  background-color: var(--color-border-subtle);
+}
+
 .product-copy {
   align-self: start;
 }

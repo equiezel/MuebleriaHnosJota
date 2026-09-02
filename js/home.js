@@ -1,21 +1,13 @@
 // Productos destacados de la página de inicio.
 // Toma los que tienen destacado: true en js/data.js y arma las tarjetas.
-// Antes de mostrarlas espera un rato para simular la demora de un servidor.
+// Antes de mostrarlas espera un rato para simular la demora de un servidor:
+// esperar() y DEMORA_SIMULADA vienen de js/main.js y son los mismos que usan
+// el catálogo y la ficha.
 
 const listaDestacados = document.getElementById("destacados-lista");
 
 // Cuántas piezas mostramos como máximo.
 const CANTIDAD_DESTACADOS = 4;
-
-// Cuánto tarda la carga simulada, en milisegundos.
-const DEMORA_SIMULADA = 800;
-
-// Promesa que se resuelve después de los milisegundos pedidos.
-function esperar(milisegundos) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, milisegundos);
-  });
-}
 
 // Tarjeta vacía del mismo tamaño que las reales, para que la grilla
 // ya ocupe su alto mientras carga.

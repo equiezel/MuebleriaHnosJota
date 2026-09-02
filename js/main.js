@@ -59,6 +59,21 @@ function formatearPrecio(precio) {
   return "$ " + numero.toLocaleString("es-AR", { maximumFractionDigits: 0 });
 }
 
+/* ── Carga simulada ── */
+
+// Cuánto tarda la carga simulada, en milisegundos. Un solo valor para las tres
+// páginas que dibujan datos, así la espera se siente igual en todo el sitio.
+const DEMORA_SIMULADA = 800;
+
+// Promesa que se resuelve después de los milisegundos pedidos. Con await
+// delante, frena el render hasta que pasa la demora, como si contestara un
+// servidor. Cuando exista la API de verdad, se reemplaza por el fetch.
+function esperar(milisegundos) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, milisegundos);
+  });
+}
+
 /* ── Almacén del carrito ── */
 
 // Devuelve siempre un array, aunque lo guardado esté roto o no exista.
@@ -200,3 +215,5 @@ window.guardarCarrito = guardarCarrito;
 window.agregarAlCarrito = agregarAlCarrito;
 window.formatearPrecio = formatearPrecio;
 window.actualizarContadorCarrito = actualizarContadorCarrito;
+window.esperar = esperar;
+window.DEMORA_SIMULADA = DEMORA_SIMULADA;

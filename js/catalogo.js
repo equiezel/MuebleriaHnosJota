@@ -1,5 +1,6 @@
 // Catálogo completo con buscador en vivo.
-// El formato de precio viene de js/main.js, para que sea el mismo en todo el sitio.
+// El formato de precio y la espera simulada vienen de js/main.js, para que sean
+// los mismos en todo el sitio.
 
 const productGrid = document.querySelector("#product-grid");
 const productSearch = document.querySelector("#product-search");
@@ -7,6 +8,9 @@ const productCount = document.querySelector("#product-count");
 
 let searchTimeout;
 const DEBOUNCE_DELAY = 300;
+
+// Cuántas tarjetas vacías mostramos mientras "llega" el catálogo.
+const CANTIDAD_ESQUELETOS = 6;
 
 const hayCatalogo = productGrid && productSearch && productCount;
 
@@ -21,6 +25,26 @@ const escapeHTML = (text) => {
 	const div = document.createElement("div");
 	div.textContent = text;
 	return div.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+};
+
+// Tarjetas vacías del mismo alto que las reales, para que la grilla ya ocupe
+// su espacio y no salte cuando entran los productos.
+const renderSkeletons = () => {
+	productGrid.setAttribute("aria-busy", "true");
+	productCount.textContent = "Cargando piezas…";
+
+	productGrid.innerHTML = `
+		<article class="product-card product-card--esqueleto" aria-hidden="true">
+			<div class="product-card__image-wrap"></div>
+			<div class="product-card__content">
+				<div>
+					<p class="esqueleto-linea esqueleto-linea--media"></p>
+					<p class="esqueleto-linea"></p>
+					<p class="esqueleto-linea esqueleto-linea--corta"></p>
+				</div>
+				<p class="esqueleto-linea esqueleto-linea--media"></p>
+			</div>
+		</article>`.repeat(CANTIDAD_ESQUELETOS);
 };
 
 const renderProducts = (products) => {
@@ -120,10 +144,18 @@ if (hayCatalogo) {
 	});
 }
 
-const initializeCatalog = () => {
+// La primera pintada simula la respuesta de una API: esqueletos, espera y
+// recién ahí los datos. El buscador no espera: filtra sobre lo ya cargado.
+const initializeCatalog = async () => {
+	renderSkeletons();
+
+	await window.esperar(window.DEMORA_SIMULADA);
+
 	if (typeof productos !== "undefined" && Array.isArray(productos)) {
 		renderProducts(productos);
 	} else {
+		productGrid.setAttribute("aria-busy", "false");
+		productCount.textContent = "";
 		console.error("Error: La variable 'productos' no está disponible. Verifica que data.js cargó correctamente.");
 		productGrid.innerHTML = `
 			<div class="catalog-status catalog-status--empty">

@@ -1,5 +1,5 @@
 // Ficha de una pieza. Lee el id de la URL (producto.html?id=...) y arma el detalle.
-// El carrito y el formato de precio vienen de js/main.js.
+// El carrito, el formato de precio y la espera simulada vienen de js/main.js.
 
 const detalleContainer = document.querySelector("#product-detail");
 const idProducto = new URLSearchParams(window.location.search).get("id");
@@ -30,10 +30,45 @@ function etiquetaDeEspecificacion(clave) {
   return clave.charAt(0).toUpperCase() + clave.slice(1);
 }
 
+/* ── Carga ── */
+
+// Bloques vacíos con la forma de la ficha real, para que la página no salte
+// cuando entra el contenido.
+function mostrarEsqueletoFicha() {
+  detalleContainer.textContent = "";
+  detalleContainer.setAttribute("aria-busy", "true");
+
+  const galeria = document.createElement("div");
+  galeria.className = "product-gallery product-gallery--esqueleto";
+  galeria.setAttribute("aria-hidden", "true");
+
+  const copy = document.createElement("div");
+  copy.className = "product-copy";
+  copy.setAttribute("aria-hidden", "true");
+
+  // Volanta, título, dos de descripción y precio.
+  const anchos = ["--corta", "--media", "", "", "--corta"];
+
+  anchos.forEach(function (modificador) {
+    const linea = document.createElement("p");
+    linea.className = "esqueleto-linea";
+
+    if (modificador !== "") {
+      linea.classList.add("esqueleto-linea" + modificador);
+    }
+
+    copy.appendChild(linea);
+  });
+
+  detalleContainer.appendChild(galeria);
+  detalleContainer.appendChild(copy);
+}
+
 /* ── Pieza no encontrada ── */
 
 function mostrarNoEncontrado() {
   detalleContainer.textContent = "";
+  detalleContainer.setAttribute("aria-busy", "false");
   detalleContainer.classList.add("product-detail--error");
 
   const bloque = document.createElement("section");
@@ -192,6 +227,7 @@ function crearTextoProducto() {
 
 function renderizarProducto() {
   detalleContainer.textContent = "";
+  detalleContainer.setAttribute("aria-busy", "false");
   detalleContainer.appendChild(crearGaleria());
   detalleContainer.appendChild(crearTextoProducto());
   detalleContainer.appendChild(crearEspecificaciones());
@@ -244,10 +280,17 @@ function conectarAcciones() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+// La ficha simula la respuesta de una API: esqueleto, espera y recién ahí el
+// contenido. El "no encontramos esa pieza" también espera, porque en el sitio
+// real esa respuesta la daría el servidor.
+document.addEventListener("DOMContentLoaded", async function () {
   if (detalleContainer === null) {
     return;
   }
+
+  mostrarEsqueletoFicha();
+
+  await window.esperar(window.DEMORA_SIMULADA);
 
   if (producto === undefined) {
     mostrarNoEncontrado();

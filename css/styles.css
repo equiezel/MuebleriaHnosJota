@@ -189,6 +189,24 @@ section {
   color: var(--color-bg-main);
 }
 
+/* --- Esqueletos de carga --- */
+/* Las usan home.js, catalogo.js y detalle.js mientras corre la espera
+   simulada, así que viven acá y no en el CSS de una sola página. */
+.esqueleto-linea {
+  background-color: var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  height: 11px;
+  margin-bottom: 12px;
+}
+
+.esqueleto-linea--corta {
+  width: 45%;
+}
+
+.esqueleto-linea--media {
+  width: 70%;
+}
+
 /* --- Header --- */
 
 /* Fijo arriba para que el carrito quede siempre a la vista */
