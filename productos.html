@@ -13,16 +13,31 @@
   </head>
   <body>
     
-    <header class="catalog-header">
-      <a class="brand" href="index.html" aria-label="Hermanos Jota, inicio"
-        >Hermanos Jota</a
-      >
-      <nav aria-label="Navegación principal">
-        <a href="index.html">Inicio</a>
-        <a class="active" href="productos.html" aria-current="page">Catálogo</a>
-        <a href="contacto.html">Contacto</a>
+<header class="site-header">
+    <div class="site-header__inner contenedor">
+
+      <a class="marca" href="index.html">
+        <img class="marca__simbolo" src="assets/logo/logo.svg" alt="Logo de Hermanos Jota"
+             width="500" height="500">
+        <span class="marca__nombre">Hermanos Jota</span>
+      </a>
+
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <ul class="nav-principal__lista">
+          <li><a class="is-activa" href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="productos.html">Catálogo</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
       </nav>
-    </header>
+
+      <button class="boton-carrito" id="boton-carrito" type="button" disabled
+              title="El panel del carrito llega con js/carrito.js">
+        Carrito
+        <span class="boton-carrito__contador" id="contador-carrito">0</span>
+      </button>
+
+    </div>
+  </header>
 
     <main>
       <section class="catalog-intro" aria-labelledby="catalog-title">
