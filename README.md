@@ -6,7 +6,7 @@ Sitio de e-commerce para una mueblería artesanal, desarrollado como trabajo pr�
 
 - P1 — Nombre y apellido
 - P2 — Augusto Freire
-- P3 — Nombre y apellido
+- P3 — Agustin Rivero
 - P4 — Nombre y apellido
 - P5 — Nombre y apellido
 
