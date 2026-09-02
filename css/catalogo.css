@@ -221,6 +221,34 @@ main {
 	letter-spacing: 0.05em;
 }
 
+.product-card__footer > a {
+	color: var(--color-primary);
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.product-card__add {
+	padding: 0.55rem 0.7rem;
+	border: 1px solid var(--color-primary);
+	background: var(--color-primary);
+	color: var(--color-white);
+	font: inherit;
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.product-card__add:hover,
+.product-card__add:focus-visible {
+	border-color: var(--color-accent-gold);
+	background: var(--color-accent-gold);
+	color: var(--color-text-dark);
+}
+
 .catalog-status {
 	grid-column: 1 / -1;
 	padding: 4rem 1rem;

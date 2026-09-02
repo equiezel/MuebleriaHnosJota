@@ -24,8 +24,8 @@
 
       <nav class="nav-principal" aria-label="Navegación principal">
         <ul class="nav-principal__lista">
-          <li><a class="is-activa" href="index.html" aria-current="page">Inicio</a></li>
-          <li><a href="productos.html">Catálogo</a></li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a class="is-activa" href="productos.html" aria-current="page">Catálogo</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
@@ -74,11 +74,51 @@
       </section>
     </main>
 
-    <footer class="catalog-footer">
-      <p>Hermanos Jota · Muebles con origen</p>
+    <footer class="site-footer">
+      <div class="site-footer__inner contenedor">
+        <div class="site-footer__marca">
+          <img class="marca__simbolo" src="assets/logo/logo.svg" alt=""
+               width="500" height="500" loading="lazy" decoding="async">
+          <p class="site-footer__lema">
+            Muebles que no solo cumplen una función: alimentan el alma.
+          </p>
+        </div>
+
+        <div class="site-footer__bloque">
+          <h2>Showroom y taller</h2>
+          <p>Av. San Juan 2847<br>C1232AAB · San Cristóbal, CABA</p>
+          <p>Lunes a viernes, 10:00 a 19:00<br>Sábados, 10:00 a 14:00</p>
+        </div>
+
+        <div class="site-footer__bloque">
+          <h2>Contacto</h2>
+          <ul>
+            <li><a href="mailto:info@hermanosjota.com.ar">info@hermanosjota.com.ar</a></li>
+            <li><a href="mailto:ventas@hermanosjota.com.ar">ventas@hermanosjota.com.ar</a></li>
+            <li><a href="https://wa.me/541145678900" target="_blank" rel="noopener">WhatsApp +54 11 4567-8900</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__bloque">
+          <h2>Seguinos</h2>
+          <ul>
+            <li><a href="https://www.instagram.com/hermanosjota_ba" target="_blank" rel="noopener">Instagram @hermanosjota_ba</a></li>
+            <li><a href="https://www.hermanosjota.com.ar" target="_blank" rel="noopener">www.hermanosjota.com.ar</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__creditos">
+        <div class="contenedor">
+          <p>© 2026 Hermanos Jota. Todas las piezas se fabrican en Buenos Aires.</p>
+          <p>Sitio desarrollado como trabajo práctico — Curso Full-Stack, ITBA.</p>
+        </div>
+      </div>
     </footer>
 
     <script src="js/data.js"></script>
+	<script src="js/carrito.js"></script>
+	<script src="js/main.js"></script>
     <script src="js/catalogo.js"></script>
   </body>
 </html>
