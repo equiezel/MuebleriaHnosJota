@@ -38,6 +38,7 @@ html {
 
 body {
   font-family: var(--font-body);
+  overflow-wrap: break-word;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;
@@ -73,4 +74,416 @@ h4 {
   letter-spacing: 0.1em;
   line-height: 1.3;
   color: var(--color-primary);
+}
+
+/* Header, footer y botones: comunes a todas las páginas.
+   Lo propio del home está en css/home.css.
+   Mobile first: la base es celular, las media queries agrandan. */
+
+/* Contenedor centrado */
+.contenedor {
+  width: 90%;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+/* Volanta. El manual pide Inter Light con espaciado 0.02em.
+   En gris oscuro: el verde salvia no contrasta bien sobre fondo claro. */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-dark);
+  margin-bottom: 16px;
+}
+
+/* A tamaño chico, 0.1em cuesta leer */
+h3 {
+  letter-spacing: 0.06em;
+}
+
+/* Foco visible con los colores de la marca */
+:focus-visible {
+  outline: 2px solid var(--color-text-dark);
+  outline-offset: 3px;
+}
+
+/* El header es sticky y taparía lo que se enfoca con el teclado */
+main,
+section {
+  scroll-margin-top: 110px;
+}
+
+/* Saltar al contenido: invisible hasta que se lo enfoca con el teclado */
+.saltar-al-contenido {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 20;
+  background-color: var(--color-primary);
+  color: var(--color-bg-main);
+  padding: 12px 22px;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.saltar-al-contenido:focus {
+  left: 0;
+}
+
+/* Menos movimiento si el sistema lo pide */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Botones. El manual pide Inter Medium, mayúsculas y espaciado 0.08em */
+.boton {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 15px 30px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+              border-color var(--transition);
+}
+
+.boton--primario {
+  background-color: var(--color-primary);
+  color: var(--color-bg-main);
+}
+
+.boton--primario:hover {
+  background-color: var(--color-accent-gold);
+  color: var(--color-text-dark);
+}
+
+.boton--secundario {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.boton--secundario:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg-main);
+}
+
+/* --- Header --- */
+
+/* Fijo arriba para que el carrito quede siempre a la vista */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 24px;
+  padding: 14px 0;
+}
+
+/* El manual pide espacio libre alrededor del logo (la altura de la "H")
+   y un ancho mínimo de 120px */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  min-width: 120px;
+}
+
+.marca__simbolo {
+  width: 40px;
+  height: 40px;
+}
+
+.marca__nombre {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+/* En celular la nav baja sola a un renglón propio */
+.nav-principal {
+  order: 3;
+  width: 100%;
+}
+
+.nav-principal__lista {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-principal__lista a {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-dark);
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-principal__lista a:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-border-subtle);
+}
+
+/* Página actual */
+.nav-principal__lista .is-activa {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-accent-gold);
+}
+
+/* Carrito */
+.boton-carrito {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-dark);
+  background-color: transparent;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.boton-carrito:hover:enabled {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Deshabilitado mientras no exista js/carrito.js */
+.boton-carrito:disabled {
+  cursor: default;
+}
+
+.boton-carrito__contador {
+  display: inline-block;
+  min-width: 22px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background-color: var(--color-accent-gold);
+  color: var(--color-text-dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+/* Carrito vacío */
+.boton-carrito__contador.esta-vacio {
+  background-color: var(--color-border-subtle);
+  color: var(--color-text-dark);
+}
+
+/* --- Footer --- */
+
+.site-footer {
+  margin-top: auto;
+  background-color: var(--color-bg-main);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 56px 0 40px;
+}
+
+.site-footer__marca .marca__simbolo {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.site-footer__lema {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--color-primary);
+}
+
+.site-footer__bloque h2 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-dark);
+  margin-bottom: 14px;
+}
+
+.site-footer__bloque p {
+  font-weight: 300;
+  font-size: 0.9375rem;
+  margin-bottom: 12px;
+}
+
+.site-footer__bloque ul {
+  list-style: none;
+}
+
+.site-footer__bloque li {
+  margin-bottom: 8px;
+}
+
+.site-footer__bloque a {
+  font-weight: 300;
+  font-size: 0.9375rem;
+  color: var(--color-text-dark);
+}
+
+.site-footer__bloque a:hover {
+  color: var(--color-primary);
+}
+
+.site-footer__creditos {
+  border-top: 1px solid var(--color-border-subtle);
+  padding: 22px 0;
+}
+
+.site-footer__creditos p {
+  font-weight: 300;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+
+/* --- Celulares angostos --- */
+/* Achicamos el lockup para que la marca y el carrito entren en un renglón */
+@media (max-width: 480px) {
+  .marca {
+    gap: 6px;
+    padding: 8px 10px;
+  }
+
+  .marca__simbolo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .marca__nombre {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+
+  .boton-carrito {
+    padding: 8px 12px;
+  }
+
+  .site-header__inner {
+    gap: 6px 14px;
+    padding: 10px 0;
+  }
+
+  .nav-principal__lista {
+    gap: 18px;
+  }
+}
+
+/* --- Tablet y escritorio --- */
+@media (min-width: 768px) {
+
+  /* Acá ya entra todo en un renglón */
+  .nav-principal {
+    order: 0;
+    width: auto;
+  }
+
+  .nav-principal__lista {
+    gap: 24px;
+  }
+
+  /* Dos columnas: con cuatro los mails no entran y se pisan */
+  .site-footer__inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 72px 0 48px;
+  }
+
+  .site-footer__marca {
+    width: 100%;
+  }
+
+  .site-footer__bloque {
+    width: calc((100% - 32px) / 2);
+    min-width: 0;
+  }
+
+  .site-footer__creditos .contenedor {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .site-footer__creditos p {
+    margin-bottom: 0;
+  }
+}
+
+/* --- Escritorio ancho --- */
+@media (min-width: 1200px) {
+
+  /* Ahora sí entran las cuatro columnas */
+  .site-footer__inner {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .site-footer__marca {
+    width: 28%;
+  }
+
+  .site-footer__bloque {
+    width: 21%;
+  }
+}
+
+/* --- Escritorio --- */
+@media (min-width: 1024px) {
+
+  .nav-principal__lista {
+    gap: 32px;
+  }
 }

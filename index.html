@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hermanos Jota: muebles de madera nativa certificada FSC®, hechos a mano en nuestra Casa Taller de San Cristóbal, Buenos Aires.">
+  <title>Hermanos Jota | Muebles con historia</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner contenedor">
+
+      <a class="marca" href="index.html">
+        <img class="marca__simbolo" src="assets/logo/logo.svg" alt="Logo de Hermanos Jota"
+             width="500" height="500">
+        <span class="marca__nombre">Hermanos Jota</span>
+      </a>
+
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <ul class="nav-principal__lista">
+          <li><a class="is-activa" href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="productos.html">Catálogo</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <button class="boton-carrito" id="boton-carrito" type="button" disabled
+              title="El panel del carrito llega con js/carrito.js">
+        Carrito
+        <span class="boton-carrito__contador" id="contador-carrito">0</span>
+      </button>
+
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__inner contenedor">
+
+        <div class="hero__texto">
+          <p class="eyebrow">Casa Taller · San Cristóbal, Buenos Aires</p>
+          <h1 class="hero__titulo">Cada pieza cuenta una historia</h1>
+          <p class="hero__bajada">
+            Trabajamos algarrobo, quebracho y caldén de bosques argentinos certificados,
+            y los terminamos con aceite de lino y cera de abejas. Muebles que recuerdan
+            el optimismo de los años 60, hechos con la conciencia de hoy.
+          </p>
+          <div class="hero__acciones">
+            <a class="boton boton--primario" href="productos.html">Ver el catálogo</a>
+            <a class="boton boton--secundario" href="contacto.html">Visitar el taller</a>
+          </div>
+        </div>
+
+        <figure class="hero__figura">
+          <img class="encuadre-sillon-copacabana" src="assets/images/sillon-copacabana.png"
+               alt="Sillón Copacabana: butaca de una plaza con estructura de madera maciza y tapizado en cuero curtido color cognac"
+               width="1024" height="1024" fetchpriority="high" decoding="async">
+          <figcaption class="hero__epigrafe">
+            <a href="producto.html?id=sillon-copacabana">Sillón Copacabana &rarr;</a>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- Compromiso -->
+    <section class="compromiso">
+      <div class="contenedor">
+        <img class="compromiso__marca" src="assets/logo/logo-invertido.svg" alt=""
+             width="500" height="500">
+        <h2 class="compromiso__titulo">Nuestro compromiso</h2>
+
+        <ul class="compromiso__lista">
+          <li class="compromiso__item">
+            <h3>Madera con origen</h3>
+            <p>
+              Algarrobo, quebracho y caldén certificados <strong>FSC®</strong>, de bosques
+              responsables argentinos. Nada de plásticos de un solo uso en toda la cadena.
+            </p>
+          </li>
+          <li class="compromiso__item">
+            <h3>Herencia Viva</h3>
+            <p>
+              Diez años de garantía en estructura y cinco en acabados. Restauramos piezas
+              antiguas y recompramos las nuestras hasta un 40% de su valor.
+            </p>
+          </li>
+          <li class="compromiso__item">
+            <h3>Hecho en el taller</h3>
+            <p>
+              Cada mueble se tornea, arma y embala en San Cristóbal, con proveedores
+              del Gran Buenos Aires y acabados naturales de bajo COV.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Destacados -->
+    <section class="destacados">
+      <div class="contenedor">
+
+        <div class="destacados__encabezado">
+          <p class="eyebrow">Selección de la casa</p>
+          <h2>Piezas destacadas</h2>
+          <p class="destacados__intro">
+            Cuatro muebles que resumen cómo trabajamos: madera noble a la vista,
+            herrajes que se ven poco y duran mucho, y proporciones que envejecen bien.
+          </p>
+        </div>
+
+        <!-- Las tarjetas las inyecta js/home.js -->
+        <div class="destacados__lista" id="destacados-lista" aria-live="polite">
+          <p class="destacados__estado" id="destacados-estado">Preparando la colección…</p>
+        </div>
+
+        <p class="destacados__pie">
+          <a class="boton boton--secundario" href="productos.html">Ver las once piezas</a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner contenedor">
+
+      <div class="site-footer__marca">
+        <img class="marca__simbolo" src="assets/logo/logo.svg" alt=""
+             width="500" height="500" loading="lazy" decoding="async">
+        <p class="site-footer__lema">
+          Muebles que no solo cumplen una función: alimentan el alma.
+        </p>
+      </div>
+
+      <div class="site-footer__bloque">
+        <h2>Showroom y taller</h2>
+        <p>Av. San Juan 2847<br>C1232AAB · San Cristóbal, CABA</p>
+        <p>Lunes a viernes, 10:00 a 19:00<br>Sábados, 10:00 a 14:00</p>
+      </div>
+
+      <div class="site-footer__bloque">
+        <h2>Contacto</h2>
+        <ul>
+          <li><a href="mailto:info@hermanosjota.com.ar">info@hermanosjota.com.ar</a></li>
+          <li><a href="mailto:ventas@hermanosjota.com.ar">ventas@hermanosjota.com.ar</a></li>
+          <li><a href="https://wa.me/541145678900" target="_blank" rel="noopener">WhatsApp +54 11 4567-8900</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__bloque">
+        <h2>Seguinos</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/hermanosjota_ba" target="_blank" rel="noopener">Instagram @hermanosjota_ba</a></li>
+          <li><a href="https://www.hermanosjota.com.ar" target="_blank" rel="noopener">www.hermanosjota.com.ar</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="site-footer__creditos">
+      <div class="contenedor">
+        <p>© 2026 Hermanos Jota. Todas las piezas se fabrican en Buenos Aires.</p>
+        <p>Sitio desarrollado como trabajo práctico — Curso Full-Stack, ITBA.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
