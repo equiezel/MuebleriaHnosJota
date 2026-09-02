@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Hermanos Jota: muebles de madera nativa certificada FSC®, hechos a mano en nuestra Casa Taller de San Cristóbal, Buenos Aires.">
   <title>Hermanos Jota | Muebles con historia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/home.css">
 </head>
@@ -24,14 +28,14 @@
 
       <nav class="nav-principal" aria-label="Navegación principal">
         <ul class="nav-principal__lista">
-          <li><a class="is-activa" href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="index.html">Inicio</a></li>
           <li><a href="productos.html">Catálogo</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
 
-      <button class="boton-carrito" id="boton-carrito" type="button" disabled
-              title="El panel del carrito llega con js/carrito.js">
+      <!-- js/main.js lo habilita y le pone el aria-label con la cantidad. -->
+      <button class="boton-carrito" id="boton-carrito" type="button" disabled>
         Carrito
         <span class="boton-carrito__contador" id="contador-carrito">0</span>
       </button>
@@ -178,6 +182,7 @@
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/carrito.js"></script>
   <script src="js/home.js"></script>
 </body>
 </html>

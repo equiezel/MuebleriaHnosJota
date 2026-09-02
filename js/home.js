@@ -17,11 +17,6 @@ function esperar(milisegundos) {
   });
 }
 
-// 185000 -> "$ 185.000"
-function precioEnPesos(precio) {
-  return "$ " + precio.toLocaleString("es-AR");
-}
-
 // Tarjeta vacía del mismo tamaño que las reales, para que la grilla
 // ya ocupe su alto mientras carga.
 function crearEsqueleto() {
@@ -111,7 +106,7 @@ function crearTarjeta(producto) {
 
   const precio = document.createElement("p");
   precio.className = "producto-card__precio";
-  precio.textContent = precioEnPesos(producto.precio);
+  precio.textContent = window.formatearPrecio(producto.precio);
 
   const accion = document.createElement("p");
   accion.className = "producto-card__accion";
