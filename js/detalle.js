@@ -56,7 +56,7 @@ function renderProduct() {
 
 function getCart() {
 	try {
-		return JSON.parse(localStorage.getItem("carrito") || "[]");
+		return JSON.parse(localStorage.getItem("carritoHermanosJota") || "[]");
 	} catch {
 		return [];
 	}
@@ -64,7 +64,11 @@ function getCart() {
 
 function updateCartCount() {
 	const count = getCart().reduce((total, item) => total + item.cantidad, 0);
-	document.querySelector(".cart-count").textContent = count;
+	const counter = document.querySelector("#contador-carrito");
+
+	if (counter) {
+		counter.textContent = count;
+	}
 }
 
 function addToCart(quantity) {
@@ -77,7 +81,7 @@ function addToCart(quantity) {
 		cart.push({ ...product, cantidad: quantity });
 	}
 
-	localStorage.setItem("carrito", JSON.stringify(cart));
+	localStorage.setItem("carritoHermanosJota", JSON.stringify(cart));
 	updateCartCount();
 	const button = document.querySelector("#add-to-cart");
 	button.textContent = "Agregado";
