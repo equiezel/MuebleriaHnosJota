@@ -1,48 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Catálogo completo de muebles de Hermanos Jota.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Catálogo completo de muebles de Hermanos Jota."
+    />
     <title>Catálogo | Hermanos Jota</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/catalogo.css">
-</head>
-<body>
-<!--     <header class="catalog-header">
-        <a class="brand" href="index.html" aria-label="Hermanos Jota, inicio">Hermanos Jota</a>
-        <nav aria-label="Navegación principal">
-            <a href="index.html">Inicio</a>
-            <a class="active" href="productos.html" aria-current="page">Catálogo</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
-    </header> -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/catalogo.css" />
+  </head>
+  <body>
+    
+    <header class="catalog-header">
+      <a class="brand" href="index.html" aria-label="Hermanos Jota, inicio"
+        >Hermanos Jota</a
+      >
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a class="active" href="productos.html" aria-current="page">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </header>
 
     <main>
-        <section class="catalog-intro" aria-labelledby="catalog-title">
-            <p class="eyebrow">Diseño que permanece</p>
-            <h1 id="catalog-title">Nuestro catálogo</h1>
-            <p>Encontrá piezas honestas, hechas para acompañar tu casa durante años.</p>
-        </section>
+      <section class="catalog-intro" aria-labelledby="catalog-title">
+        <p class="eyebrow">Diseño que permanece</p>
+        <h1 id="catalog-title">Nuestro catálogo</h1>
+        <p>
+          Encontrá piezas honestas, hechas para acompañar tu casa durante años.
+        </p>
+      </section>
 
-        <section class="catalog-toolbar" aria-label="Herramientas del catálogo">
-            <label class="search-field" for="product-search">
-                <span aria-hidden="true">⌕</span>
-                <input id="product-search" type="search" placeholder="Buscar por nombre o descripción..." autocomplete="off">
-            </label>
-            <p id="product-count" class="product-count" aria-live="polite">Cargando productos...</p>
-        </section>
+      <section class="catalog-toolbar" aria-label="Herramientas del catálogo">
+        <label class="search-field" for="product-search">
+          <span aria-hidden="true">⌕</span>
+          <input
+            id="product-search"
+            type="search"
+            placeholder="Buscar por nombre o descripción..."
+            autocomplete="off"
+          />
+        </label>
+        <p id="product-count" class="product-count" aria-live="polite">
+          Cargando productos...
+        </p>
+      </section>
 
-        <section id="product-grid" class="product-grid" aria-live="polite" aria-busy="true" aria-label="Productos disponibles">
-            <div class="catalog-status">Estamos preparando el catálogo...</div>
-        </section>
+      <section
+        id="product-grid"
+        class="product-grid"
+        aria-live="polite"
+        aria-busy="true"
+        aria-label="Productos disponibles"
+      >
+        <div class="catalog-status">Estamos preparando el catálogo...</div>
+      </section>
     </main>
 
     <footer class="catalog-footer">
-        <p>Hermanos Jota · Muebles con origen</p>
+      <p>Hermanos Jota · Muebles con origen</p>
     </footer>
 
     <script src="js/data.js"></script>
     <script src="js/catalogo.js"></script>
-</body>
+  </body>
 </html>
