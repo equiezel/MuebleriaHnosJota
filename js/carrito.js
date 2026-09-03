@@ -3,12 +3,16 @@
 //
 // El almacén (leer, guardar, sumar, contar) está en js/main.js: acá solo se dibuja.
 
-const CARRITO_MAXIMO_POR_PIEZA = 99;
+// Cuánto se espera como máximo a que el panel termine de deslizarse, por si el
+// navegador no dispara "transitionend" (con prefers-reduced-motion, por ejemplo).
+const RESPALDO_CIERRE = 400;
 
 let panelCarrito = null;
 let fondoCarrito = null;
 // Para devolver el foco a donde estaba cuando se cierra el panel.
 let focoPrevio = null;
+// Respaldo del cierre, para poder cancelarlo si el panel vuelve a abrirse.
+let temporizadorCierre = null;
 
 /* ── Armado ── */
 
@@ -124,7 +128,7 @@ function crearLineaCarrito(item) {
   sumar.dataset.id = item.id;
   sumar.setAttribute("aria-label", "Sumar una unidad de " + item.nombre);
   sumar.textContent = "+";
-  sumar.disabled = item.cantidad >= CARRITO_MAXIMO_POR_PIEZA;
+  sumar.disabled = item.cantidad >= window.CARRITO_MAXIMO_POR_PIEZA;
 
   const quitar = document.createElement("button");
   quitar.type = "button";
@@ -249,7 +253,7 @@ function cambiarCantidad(id, delta) {
     return;
   }
 
-  item.cantidad = Math.min(nueva, CARRITO_MAXIMO_POR_PIEZA);
+  item.cantidad = Math.min(nueva, window.CARRITO_MAXIMO_POR_PIEZA);
   window.guardarCarrito(carrito);
   window.actualizarContadorCarrito();
   renderizarCarrito();
@@ -273,6 +277,9 @@ function abrirCarrito() {
   }
 
   focoPrevio = document.activeElement;
+
+  // Si se abre mientras se estaba cerrando, se cancela el ocultado pendiente.
+  cancelarOcultado();
 
   renderizarCarrito();
 
@@ -298,15 +305,44 @@ function cerrarCarrito() {
   panelCarrito.classList.remove("is-open");
   document.body.classList.remove("cart-open");
 
-  // Se oculta recién cuando termina de deslizarse, para no cortar la transición.
-  window.setTimeout(function () {
-    fondoCarrito.hidden = true;
-    panelCarrito.hidden = true;
-  }, 250);
+  // El hidden va recién cuando el panel terminó de deslizarse: puesto antes, o
+  // con un plazo fijo más corto que la transición, el cajón se corta de golpe.
+  panelCarrito.addEventListener("transitionend", alTerminarElCierre);
+  temporizadorCierre = window.setTimeout(function () {
+    ocultarPanel();
+  }, RESPALDO_CIERRE);
 
   if (focoPrevio !== null && typeof focoPrevio.focus === "function") {
     focoPrevio.focus();
   }
+}
+
+// Solo interesa el deslizamiento del panel: las transiciones de los botones de
+// adentro también burbujean hasta acá.
+function alTerminarElCierre(evento) {
+  if (evento.target !== panelCarrito || evento.propertyName !== "transform") {
+    return;
+  }
+
+  ocultarPanel();
+}
+
+function ocultarPanel() {
+  cancelarOcultado();
+
+  // Si volvió a abrirse mientras se cerraba, no hay nada que ocultar.
+  if (panelCarrito.classList.contains("is-open")) {
+    return;
+  }
+
+  fondoCarrito.hidden = true;
+  panelCarrito.hidden = true;
+}
+
+function cancelarOcultado() {
+  window.clearTimeout(temporizadorCierre);
+  temporizadorCierre = null;
+  panelCarrito.removeEventListener("transitionend", alTerminarElCierre);
 }
 
 // Escape cierra, y el tabulador no se escapa del panel mientras está abierto.

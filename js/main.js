@@ -7,6 +7,10 @@
 // Única clave de localStorage del sitio. Si se cambia acá, se cambia en todos lados.
 const CLAVE_CARRITO = "carritoHermanosJota";
 
+// Tope de unidades por pieza. Vive acá, junto al almacén, para que el panel y
+// las dos páginas que agregan al carrito respeten el mismo límite.
+const CARRITO_MAXIMO_POR_PIEZA = 99;
+
 const botonCarrito = document.getElementById("boton-carrito");
 const contadorCarrito = document.getElementById("contador-carrito");
 
@@ -50,6 +54,12 @@ function marcarNavegacionActiva() {
 
 // 185000 -> "$ 185.000". Un solo formato para todo el sitio.
 function formatearPrecio(precio) {
+  // null, undefined y la cadena vacía se convierten en 0 sin chistar, así que
+  // se descartan antes de mirar el número: sin dato no hay precio que mostrar.
+  if (precio === null || precio === undefined || String(precio).trim() === "") {
+    return "Precio a consultar";
+  }
+
   const numero = Number(precio);
 
   if (Number.isFinite(numero) === false) {
@@ -76,6 +86,18 @@ function esperar(milisegundos) {
 
 /* ── Almacén del carrito ── */
 
+// Una cantidad guardada puede venir rota, con decimales o de una versión vieja
+// sin tope. Devuelve siempre un entero usable entre 1 y el máximo.
+function normalizarCantidad(valor) {
+  const cantidad = Number(valor);
+
+  if (Number.isFinite(cantidad) === false || cantidad < 1) {
+    return 1;
+  }
+
+  return Math.min(Math.floor(cantidad), CARRITO_MAXIMO_POR_PIEZA);
+}
+
 // Devuelve siempre un array, aunque lo guardado esté roto o no exista.
 function obtenerCarrito() {
   const guardado = localStorage.getItem(CLAVE_CARRITO);
@@ -91,10 +113,17 @@ function obtenerCarrito() {
       return [];
     }
 
-    // Filtramos lo que no sirva para dibujar una línea del carrito.
-    return carrito.filter(function (item) {
-      return item !== null && typeof item === "object" && typeof item.id === "string";
-    });
+    // Filtramos lo que no sirva para dibujar una línea y dejamos la cantidad
+    // en un número usable. Normalizar acá, a la entrada, es lo que hace que el
+    // panel, el contador y los totales digan siempre lo mismo.
+    return carrito
+      .filter(function (item) {
+        return item !== null && typeof item === "object" && typeof item.id === "string";
+      })
+      .map(function (item) {
+        item.cantidad = normalizarCantidad(item.cantidad);
+        return item;
+      });
   } catch (error) {
     console.error("No se pudo leer el carrito guardado:", error);
     return [];
@@ -113,39 +142,45 @@ function guardarCarrito(carrito) {
 // Cuántas unidades hay en total, sumando las cantidades de cada línea.
 function contarUnidadesDelCarrito() {
   return obtenerCarrito().reduce(function (unidades, item) {
-    const cantidad = Number(item.cantidad);
-
-    if (Number.isFinite(cantidad) && cantidad > 0) {
-      return unidades + Math.floor(cantidad);
-    }
-
-    return unidades + 1;
+    return unidades + item.cantidad;
   }, 0);
 }
 
 // Suma una pieza al carrito. Si ya estaba, le suma la cantidad.
+// Devuelve cuántas unidades entraron de verdad, que puede ser menos de las
+// pedidas si la línea llegó al tope: quien llama avisa eso y no lo que pidió.
 function agregarAlCarrito(producto, cantidad) {
   const unidades = Number(cantidad) > 0 ? Math.floor(Number(cantidad)) : 1;
   const carrito = obtenerCarrito();
   const existente = carrito.find(function (item) {
     return item.id === producto.id;
   });
+  let agregadas = 0;
 
   if (existente) {
-    existente.cantidad = Number(existente.cantidad || 0) + unidades;
+    // Se capa acá y no solo en la UI: si no, el panel muestra el "+" apagado
+    // pero la cantidad guardada ya se pasó del tope.
+    const previa = existente.cantidad;
+
+    existente.cantidad = Math.min(previa + unidades, CARRITO_MAXIMO_POR_PIEZA);
+    agregadas = existente.cantidad - previa;
   } else {
+    agregadas = Math.min(unidades, CARRITO_MAXIMO_POR_PIEZA);
+
     // Guardamos solo lo que el panel necesita mostrar, no el producto entero.
     carrito.push({
       id: producto.id,
       nombre: producto.nombre,
       precio: producto.precio,
       imagen: producto.imagen,
-      cantidad: unidades,
+      cantidad: agregadas,
     });
   }
 
   guardarCarrito(carrito);
   actualizarContadorCarrito();
+
+  return agregadas;
 }
 
 /* ── Contador del header ── */
@@ -217,3 +252,4 @@ window.formatearPrecio = formatearPrecio;
 window.actualizarContadorCarrito = actualizarContadorCarrito;
 window.esperar = esperar;
 window.DEMORA_SIMULADA = DEMORA_SIMULADA;
+window.CARRITO_MAXIMO_POR_PIEZA = CARRITO_MAXIMO_POR_PIEZA;

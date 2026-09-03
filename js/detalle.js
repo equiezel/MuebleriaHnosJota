@@ -243,18 +243,21 @@ function conectarAcciones() {
   const valor = detalleContainer.querySelector("#quantity");
   const agregar = detalleContainer.querySelector("#add-to-cart");
   const restar = detalleContainer.querySelector('[data-cantidad="restar"]');
+  const sumar = detalleContainer.querySelector('[data-cantidad="sumar"]');
 
   function pintarCantidad() {
     valor.value = cantidad;
     valor.textContent = cantidad;
-    // En 1 no hay nada que restar: el botón se apaga en vez de no hacer nada.
+    // En 1 no hay nada que restar y en el tope no hay nada que sumar: los
+    // botones se apagan en vez de no hacer nada.
     restar.disabled = cantidad === 1;
+    sumar.disabled = cantidad === window.CARRITO_MAXIMO_POR_PIEZA;
   }
 
   detalleContainer.querySelectorAll("[data-cantidad]").forEach(function (boton) {
     boton.addEventListener("click", function () {
       if (boton.dataset.cantidad === "sumar") {
-        cantidad = Math.min(cantidad + 1, 99);
+        cantidad = Math.min(cantidad + 1, window.CARRITO_MAXIMO_POR_PIEZA);
       } else {
         cantidad = Math.max(1, cantidad - 1);
       }
@@ -266,11 +269,19 @@ function conectarAcciones() {
   pintarCantidad();
 
   agregar.addEventListener("click", function () {
-    window.agregarAlCarrito(producto, cantidad);
+    const agregadas = window.agregarAlCarrito(producto, cantidad);
 
-    // Confirmación en el mismo botón y vuelta al texto original.
-    agregar.textContent =
-      cantidad === 1 ? "Agregada al carrito" : cantidad + " agregadas al carrito";
+    // Confirmación en el mismo botón y vuelta al texto original. Decimos las
+    // que entraron, no las que se pidieron: con el carrito en el tope pueden
+    // ser menos, o ninguna.
+    if (agregadas === 0) {
+      agregar.textContent = "Ya tenés el máximo";
+    } else if (agregadas === 1) {
+      agregar.textContent = "Agregada al carrito";
+    } else {
+      agregar.textContent = agregadas + " agregadas al carrito";
+    }
+
     agregar.classList.add("is-agregado");
 
     window.setTimeout(function () {

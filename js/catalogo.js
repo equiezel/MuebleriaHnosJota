@@ -71,8 +71,10 @@ const renderProducts = (products) => {
 			const id = encodeURIComponent(product.id || "");
 			const nombre = escapeHTML(product.nombre || "Sin nombre");
 			const descripcion = escapeHTML(product.descripcion || "");
-			const imagen = product.imagen || "";
-			const precio = product.precio || 0;
+			const imagen = escapeHTML(product.imagen || "");
+			// Sin el "|| 0": window.formatearPrecio() ya contesta "Precio a consultar"
+			// cuando el dato falta, y un "$ 0" sería un precio inventado.
+			const precio = product.precio;
 			const destacado = product.destacado ? '<span class="product-badge">Destacado</span>' : "";
 
 			return `
@@ -128,9 +130,11 @@ if (hayCatalogo) {
 
 		if (!product) return;
 
-		window.agregarAlCarrito(product, 1);
+		const agregadas = window.agregarAlCarrito(product, 1);
 
-		button.textContent = "Agregado";
+		// Con la pieza en el tope no entra ninguna: el botón no puede decir
+		// "Agregado" si no agregó nada.
+		button.textContent = agregadas === 0 ? "Ya está el máximo" : "Agregado";
 		window.setTimeout(() => {
 			button.textContent = "Agregar";
 		}, 1400);
