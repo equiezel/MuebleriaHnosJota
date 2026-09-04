@@ -6,11 +6,11 @@ Repositorio: https://github.com/equiezel/MuebleriaHnosJota
 
 ## Integrantes
 
-- P1 - Nombre y apellido
+- P1 - Ramiro Berruezo
 - P2 - Augusto Freire
 - P3 - Agustin Rivero
 - P4 - Ezequiel Monterichel
-- P5 - Nombre y apellido
+
 
 Los nombres pendientes deben reemplazarse cuando se complete la información del equipo.
 
