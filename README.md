@@ -2,6 +2,7 @@
 
 Sitio web de una mueblería artesanal, desarrollado como trabajo práctico de los Sprints 1 y 2. Es una experiencia de compra simulada que funciona completamente en el navegador: no utiliza backend, base de datos ni servicios de pago.
 
+Pagina desplegada: https://phenomenal-eclair-a4550b.netlify.app
 Repositorio: https://github.com/equiezel/MuebleriaHnosJota
 
 ## Integrantes
@@ -11,8 +12,6 @@ Repositorio: https://github.com/equiezel/MuebleriaHnosJota
 - P3 - Agustin Rivero
 - P4 - Ezequiel Monterichel
 
-
-Los nombres pendientes deben reemplazarse cuando se complete la información del equipo.
 
 ## Qué permite hacer
 
