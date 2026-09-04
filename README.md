@@ -1,79 +1,111 @@
-# Mueblería Hermanos Jota — E-commerce (front-end)
+# Mueblería Hermanos Jota - E-commerce frontend
 
-Sitio de e-commerce para una mueblería artesanal, desarrollado como trabajo práctico (Sprint 1 y 2). Es una experiencia de compra simulada, 100% del lado del cliente: no hay backend, el catálogo se gestiona con JavaScript local.
+Sitio web de una mueblería artesanal, desarrollado como trabajo práctico de los Sprints 1 y 2. Es una experiencia de compra simulada que funciona completamente en el navegador: no utiliza backend, base de datos ni servicios de pago.
+
+Repositorio: https://github.com/equiezel/MuebleriaHnosJota
 
 ## Integrantes
 
-- P1 — Ramiro Berruezo
-- P2 — Augusto Freire
-- P3 — Agustin Rivero
-- P4 — Nombre y apellido
-- P5 — Nombre y apellido
+- P1 - Nombre y apellido
+- P2 - Augusto Freire
+- P3 - Agustin Rivero
+- P4 - Ezequiel Monterichel
+- P5 - Nombre y apellido
 
-_(Ver reparto detallado de tareas por sprint en [`ORGANIZACION-EQUIPO.md`](./ORGANIZACION-EQUIPO.md))_
+Los nombres pendientes deben reemplazarse cuando se complete la información del equipo.
 
-## Descripción del proyecto
+## Qué permite hacer
 
-El sitio permite:
+- Ver una página de inicio con la presentación de la marca, el taller y cuatro productos destacados.
+- Simular una carga asíncrona de los productos destacados mediante `async/await` y `setTimeout`.
+- Recorrer un catálogo de 11 productos.
+- Buscar productos por nombre o descripción.
+- Consultar el detalle de un producto mediante el parámetro `id` de la URL.
+- Ver imagen, descripción, precio y especificaciones técnicas de cada producto.
+- Elegir una cantidad y agregar productos al carrito.
+- Consultar el carrito desde el encabezado de cualquier página.
+- Aumentar, disminuir o eliminar productos del carrito.
+- Conservar el carrito en el navegador mediante `localStorage`.
+- Completar un formulario de contacto con validación del lado del cliente.
 
-- Ver una página de inicio con productos destacados cargados dinámicamente.
-- Recorrer el catálogo completo de productos, con buscador.
-- Ver el detalle de cada producto (imagen, descripción, materiales, precio).
-- Agregar productos a un carrito simulado, con contador visible en el header.
-- Enviar un formulario de contacto con validación en el cliente.
+## Tecnologías
 
-No hay conexión a una base de datos ni servidor: los productos viven en un array de objetos de JavaScript (`js/data.js`) y la carga se simula como si fuera una petición asíncrona real.
+- **HTML5** semántico.
+- **CSS3** con variables, Flexbox, Grid y diseño responsive mobile-first.
+- **JavaScript vanilla**, usando DOM, eventos, `async/await`, `setTimeout` e `Intl.NumberFormat`.
+- **`localStorage`** para la persistencia local del carrito.
+- **Git y GitHub** para el control de versiones y el trabajo colaborativo.
 
-## Tecnologías utilizadas
-
-- **HTML5** semántico
-- **CSS3** — mobile first, Flexbox, sin frameworks
-- **JavaScript** vanilla — manipulación del DOM, `addEventListener`, `async/await` / `setTimeout`, `localStorage` para el carrito
-- **Git y GitHub** para el trabajo colaborativo
+No se utilizan frameworks, bundlers, dependencias npm ni APIs externas.
 
 ## Estructura del proyecto
 
 ```
-mueblería-hermanos-jota/
-├── index.html
-├── productos.html
-├── producto.html
-├── contacto.html
+MuebleriaHnosJota/
+├── index.html                 # Página de inicio
+├── productos.html             # Catálogo y buscador
+├── producto.html              # Detalle de un producto
+├── contacto.html              # Formulario de contacto
 ├── css/
-│   ├── styles.css       (base y variables comunes)
-│   ├── home.css
-│   ├── catalogo.css
-│   ├── producto.css
-│   └── contacto.css
+│   ├── styles.css             # Estilos y variables globales
+│   ├── home.css               # Estilos de la página de inicio
+│   ├── catalogo.css           # Estilos del catálogo
+│   ├── producto.css           # Estilos del detalle
+│   └── contacto.css           # Estilos del formulario
 ├── js/
-│   ├── data.js           (array de objetos de productos)
-│   ├── main.js            (header, nav, utilidades comunes)
-│   ├── carrito.js         (lógica del carrito con localStorage)
-│   ├── home.js
-│   ├── catalogo.js
-│   ├── detalle.js
-│   └── contacto.js
+│   ├── data.js                # Array local con los productos
+│   ├── main.js                # Contador y comportamiento global
+│   ├── carrito.js              # Panel y operaciones del carrito
+│   ├── home.js                # Productos destacados
+│   ├── catalogo.js            # Renderizado y búsqueda
+│   ├── detalle.js             # Ficha y compra de un producto
+│   └── contacto.js             # Validación del formulario
 ├── assets/
-│   └── img/
-├── README.md
-└── ORGANIZACION-EQUIPO.md
+│   ├── images/                # Imágenes de los productos
+│   ├── logo/                  # Logotipos
+│   └── catalogo.md            # Catálogo referencial
+├── especificacion_hermanos_jota.md
+└── README.md
 ```
 
-## Cómo correrlo localmente
+## Flujo principal
 
-No hace falta instalar nada. Alcanza con abrir `index.html` en el navegador, o usar una extensión tipo Live Server para evitar problemas de rutas relativas.
+1. El usuario ingresa a la página de inicio.
+2. Puede navegar al catálogo o abrir un producto destacado.
+3. En el catálogo puede buscar productos y acceder a sus detalles.
+4. Desde una tarjeta o desde el detalle puede agregar unidades al carrito.
+5. El contador del encabezado muestra la cantidad total de unidades.
+6. El panel del carrito permite modificar cantidades y consultar el subtotal.
+7. El usuario puede completar una consulta desde la página de contacto.
 
-## Sitio desplegado
+## Cómo ejecutarlo
 
-Completar con el link una vez publicado (GitHub Pages, Netlify o Vercel):
+No hace falta instalar dependencias. Se puede abrir `index.html` directamente en el navegador. Para una experiencia más consistente con las rutas relativas, se recomienda utilizar una extensión como Live Server o cualquier servidor HTTP local.
 
-`https://usuario.github.io/mueblería-hermanos-jota/`
+## Alcance actual
 
-## Cómo contribuir (equipo interno)
+El proyecto es una demo frontend. El carrito se guarda únicamente en el navegador actual y no representa una compra real.
 
-1. `git pull origin main` antes de arrancar.
-2. Crear una rama por tarea: `git checkout -b feature/nombre-de-la-tarea`.
-3. Commits chicos y con mensajes claros.
-4. Pull Request + revisión de un compañero/a antes de mergear a `main`.
+Actualmente no están implementados:
 
-Más detalle de comandos y del reparto de tareas en [`ORGANIZACION-EQUIPO.md`](./ORGANIZACION-EQUIPO.md).
+- Checkout y procesamiento de pagos.
+- Registro o inicio de sesión de usuarios.
+- Gestión de stock, pedidos o envíos.
+- Persistencia en un servidor o base de datos.
+- Envío real del formulario de contacto.
+
+El botón **Finalizar compra** se muestra en el carrito, pero todavía no tiene un flujo asociado.
+
+## Estado de la documentación
+
+La especificación técnica y el archivo `assets/catalogo.md` son documentos de referencia. Los datos que utiliza la aplicación son los definidos actualmente en `js/data.js`, que es la fuente efectiva del catálogo.
+
+El archivo `ORGANIZACION-EQUIPO.md` no forma parte del repositorio actual; por eso el reparto de tareas no se documenta aquí mediante un enlace externo.
+
+## Contribución
+
+1. Actualizar la rama local con `git pull origin main`.
+2. Crear una rama descriptiva, por ejemplo `git checkout -b feature/nombre-de-la-tarea`.
+3. Realizar commits pequeños y claros.
+4. Abrir un Pull Request y solicitar la revisión de otro integrante antes de fusionar los cambios.
+
