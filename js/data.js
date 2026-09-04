@@ -4,7 +4,8 @@ const productos = [
     nombre: "Aparador Uspallata",
     descripcion:
       "Aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón. Su silueta minimalista realza el veteado natural de la madera, creando una pieza que combina funcionalidad y elegancia atemporal para espacios contemporáneos.",
-    imagen: "assets/images/aparador-uspallata.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Aparador%20Uspallata.png",
     precio: 185000,
     destacado: true,
     especificaciones: {
@@ -20,7 +21,8 @@ const productos = [
     nombre: "Biblioteca Recoleta",
     descripcion:
       "Estantería modular de cinco niveles en algarrobo certificado FSC®, pensada para colecciones que crecen con el tiempo. Cada repisa respeta la curvatura natural de la madera, aportando calidez y orden a salas de lectura y estudios.",
-    imagen: "assets/images/biblioteca-recoleta.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Biblioteca%20Recoleta.png",
     precio: 142000,
     destacado: true,
     especificaciones: {
@@ -36,7 +38,8 @@ const productos = [
     nombre: "Sofá Patagonia",
     descripcion:
       "Sofá de tres cuerpos con estructura en quebracho y tapizado en lino orgánico tejido localmente. Su profundidad generosa invita al descanso, mientras los acabados ecológicos garantizan una pieza que envejece con gracia en el corazón del hogar.",
-    imagen: "assets/images/sofa-patagonia.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Sofá%20Patagonia.png",
     precio: 298000,
     destacado: true,
     especificaciones: {
@@ -52,7 +55,8 @@ const productos = [
     nombre: "Mesa Comedor Pampa",
     descripcion:
       "Mesa extensible para seis comensales, elaborada en caldén de bosques responsables argentinos. Su tablero macizo celebra el veteado natural y se complementa con patas torneadas a mano en nuestro taller de San Cristóbal.",
-    imagen: "assets/images/mesa-comedor-pampa.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Mesa%20Comedor%20Pampa.png",
     precio: 215000,
     destacado: true,
     especificaciones: {
@@ -68,7 +72,8 @@ const productos = [
     nombre: "Sillón Copacabana",
     descripcion:
       "Butaca de diseño retro con respaldo envolvente y base en madera curvada. Una reinterpretación nostálgica de los clásicos años 60, fabricada con materiales recuperados y acabados de bajo impacto ambiental.",
-    imagen: "assets/images/sillon-copacabana.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Sillón%20Copacabana.png",
     precio: 168000,
     destacado: false,
     especificaciones: {
@@ -84,7 +89,8 @@ const productos = [
     nombre: "Escritorio Costa",
     descripcion:
       "Escritorio compacto con cajón integrado y pasacables oculto. Ideal para espacios de trabajo en casa, combina la solidez del roble certificado con líneas limpias que favorecen la concentración y el orden.",
-    imagen: "assets/images/escritorio-costa.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Escritorio%20Costa.png",
     precio: 98000,
     destacado: false,
     especificaciones: {
@@ -100,7 +106,8 @@ const productos = [
     nombre: "Mesa de Centro Araucaria",
     descripcion:
       "Mesa baja de líneas suaves con doble nivel, perfecta para living contemporáneos. El nogal claro aporta luminosidad al espacio mientras la producción local reduce la huella de carbono de cada unidad.",
-    imagen: "assets/images/mesa-centro-araucaria.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Mesa%20de%20Centro%20Araucaria.png",
     precio: 72000,
     destacado: false,
     especificaciones: {
@@ -116,7 +123,8 @@ const productos = [
     nombre: "Mesa de Noche Aconcagua",
     descripcion:
       "Par de mesas de luz con cajón silencioso y repisa superior amplia. Diseñadas en pareja, reflejan la artesanía local con maderas nativas seleccionadas una a una en nuestro proceso de curado.",
-    imagen: "assets/images/mesa-noche-aconcagua.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Mesa%20de%20Noche%20Aconcagua.png",
     precio: 54000,
     destacado: false,
     especificaciones: {
@@ -132,7 +140,8 @@ const productos = [
     nombre: "Butaca Mendoza",
     descripcion:
       "Butaca tapizada con respaldo medio y patas cónicas en madera torneada. Una pieza versátil que acompaña rincones de lectura y dormitorios con la calidez de la artesanía argentina y fibras naturales.",
-    imagen: "assets/images/butaca-mendoza.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Butaca%20Mendoza.png",
     precio: 89000,
     destacado: false,
     especificaciones: {
@@ -148,7 +157,8 @@ const productos = [
     nombre: "Silla de Trabajo Belgrano",
     descripcion:
       "Silla ergonómica de respaldo curvo y asiento acolchado en lino. Pensada para jornadas prolongadas frente al escritorio, une confort y sustentabilidad con una silueta que honra el diseño mid-century.",
-    imagen: "assets/images/silla-trabajo-belgrano.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Silla%20de%20Trabajo%20Belgrano.png",
     precio: 76000,
     destacado: false,
     especificaciones: {
@@ -164,7 +174,8 @@ const productos = [
     nombre: "Sillas Córdoba",
     descripcion:
       "Set de cuatro sillas apilables con respaldo de listones verticales. Livianas pero robustas, son el complemento ideal para la Mesa Comedor Pampa y representan la versatilidad de la madera nativa en espacios conviviales.",
-    imagen: "assets/images/sillas-cordoba.png",
+    imagen:
+      "https://b3rzvs.github.io/imagenes_muebleria_hermanosJota/Sillas%20Córdoba.png",
     precio: 112000,
     destacado: false,
     especificaciones: {
