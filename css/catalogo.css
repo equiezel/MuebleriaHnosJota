@@ -1,62 +1,13 @@
+/* Estilos propios de productos.html: intro, buscador y grilla.
+   El header, el footer, .contenedor y .eyebrow vienen de css/styles.css. */
+
 main {
 	flex: 1;
 	background: linear-gradient(135deg, #fffaf5 0%, #f5e6d3 100%);
 }
 
-.catalog-header,
-.catalog-footer,
-.catalog-intro,
-.catalog-toolbar,
-.product-grid {
-	width: min(1200px, calc(100% - 3rem));
-	margin-inline: auto;
-}
-
-.catalog-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	min-height: 80px;
-}
-
-.brand {
-	font-family: var(--font-heading);
-	font-size: 1.3rem;
-	font-weight: 700;
-	color: var(--color-primary);
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-}
-
-.catalog-header nav {
-	display: flex;
-	gap: 2rem;
-}
-
-.catalog-header nav a {
-	color: var(--color-text-dark);
-	font-size: 0.8rem;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-}
-
-.catalog-header nav a.active,
-.catalog-header nav a:hover {
-	color: var(--color-primary);
-}
-
 .catalog-intro {
 	padding: 5.5rem 0 3rem;
-}
-
-.eyebrow {
-	margin-bottom: 0.8rem;
-	color: var(--color-secondary);
-	font-size: 0.75rem;
-	font-weight: 700;
-	letter-spacing: 0.18em;
-	text-transform: uppercase;
 }
 
 .catalog-intro h1 {
@@ -65,7 +16,7 @@ main {
 	letter-spacing: 0.04em;
 }
 
-.catalog-intro > p:last-child {
+.catalog-intro__bajada {
 	max-width: 520px;
 	color: #695b52;
 	font-size: 1.1rem;
@@ -95,11 +46,22 @@ main {
 	box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.12);
 }
 
-.search-field span {
+.search-field__icono {
 	margin-right: 0.7rem;
 	color: var(--color-primary);
 	font-size: 1.5rem;
 	line-height: 1;
+}
+
+/* El campo necesita un nombre accesible: la lupa es aria-hidden y el
+   placeholder no cuenta como etiqueta. */
+.search-field__etiqueta {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
 }
 
 .search-field input {
@@ -152,7 +114,8 @@ main {
 .product-card img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
+	padding: 1rem;
 	transition: transform 0.5s ease;
 }
 
@@ -166,7 +129,7 @@ main {
 	left: 1rem;
 	padding: 0.35rem 0.65rem;
 	background: var(--color-secondary);
-	color: var(--color-white);
+	color: var(--color-text-dark);
 	font-size: 0.68rem;
 	font-weight: 700;
 	letter-spacing: 0.08em;
@@ -213,25 +176,26 @@ main {
 	font-size: 1.25rem;
 }
 
-.product-card__footer span {
+.product-card__acciones {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.product-card__detalle {
 	color: var(--color-primary);
 	font-size: 0.78rem;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
+	white-space: nowrap;
 }
 
-.product-card__footer > a {
-	color: var(--color-primary);
-	font-size: 0.78rem;
-	font-weight: 700;
-	letter-spacing: 0.05em;
-	text-transform: uppercase;
-}
-
+/* Agregar sin entrar a la ficha. */
 .product-card__add {
-	padding: 0.55rem 0.7rem;
+	padding: 0.55rem 0.75rem;
 	border: 1px solid var(--color-primary);
+	border-radius: var(--radius-sm);
 	background: var(--color-primary);
 	color: var(--color-white);
 	font: inherit;
@@ -239,7 +203,10 @@ main {
 	font-weight: 700;
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
+	white-space: nowrap;
 	cursor: pointer;
+	transition: background-color var(--transition), border-color var(--transition),
+	            color var(--transition);
 }
 
 .product-card__add:hover,
@@ -247,6 +214,23 @@ main {
 	border-color: var(--color-accent-gold);
 	background: var(--color-accent-gold);
 	color: var(--color-text-dark);
+}
+
+/* Tarjetas vacías mientras corre la espera simulada: mismo alto que las
+   reales, para que la grilla no salte cuando entran los productos. */
+.product-card--esqueleto {
+	box-shadow: none;
+	outline: 1px solid var(--color-border-subtle);
+	outline-offset: -1px;
+}
+
+.product-card--esqueleto:hover {
+	transform: none;
+	box-shadow: none;
+}
+
+.product-card--esqueleto .product-card__image-wrap {
+	background: var(--color-border-subtle);
 }
 
 .catalog-status {
@@ -265,13 +249,6 @@ main {
 	color: #75665c;
 }
 
-.catalog-footer {
-	padding: 1.5rem 0;
-	color: #75665c;
-	font-size: 0.8rem;
-	text-align: center;
-}
-
 @media (max-width: 800px) {
 	.product-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -279,30 +256,6 @@ main {
 }
 
 @media (max-width: 560px) {
-	.catalog-header,
-	.catalog-footer,
-	.catalog-intro,
-	.catalog-toolbar,
-	.product-grid {
-		width: min(100% - 2rem, 1200px);
-	}
-
-	.catalog-header {
-		min-height: 68px;
-	}
-
-	.brand {
-		font-size: 1rem;
-	}
-
-	.catalog-header nav {
-		gap: 0.8rem;
-	}
-
-	.catalog-header nav a {
-		font-size: 0.65rem;
-	}
-
 	.catalog-intro {
 		padding: 3.5rem 0 2rem;
 	}
@@ -317,5 +270,15 @@ main {
 		grid-template-columns: 1fr;
 		gap: 1.25rem;
 		padding-top: 2rem;
+	}
+
+	.product-card__footer {
+		align-items: stretch;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.product-card__acciones {
+		justify-content: space-between;
 	}
 }

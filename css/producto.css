@@ -1,296 +1,284 @@
-body {
-	background: var(--color-bg-main);
-}
+/* Estilos propios de producto.html: ficha de una pieza.
+   El header, el footer y los botones vienen de css/styles.css.
+   Mobile first: la base es celular, las media queries agrandan. */
+
+/* --- Estructura de la página --- */
 
 .product-page {
-	margin: 0 auto;
-	max-width: var(--container);
-	padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem);
-	width: 100%;
+  padding: 28px 0 64px;
 }
 
-/* ── PRODUCT DETAIL - Mobile First (Stacked) ── */
+/* Volver al catálogo. Es el camino de salida más usado de esta página. */
+.migas {
+  margin-bottom: 24px;
+}
+
+.migas a {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-dark);
+}
+
+.migas a:hover {
+  color: var(--color-primary);
+}
+
+.product-status {
+  font-weight: 300;
+  color: var(--color-text-dark);
+  padding: 48px 0;
+}
+
 .product-detail {
-	display: grid;
-	gap: clamp(1.5rem, 5vw, 3rem);
-	grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
 }
 
+/* --- Foto --- */
+
+/* Cuadrada como el archivo original: así el panel termina donde termina la
+   imagen y no queda un bloque beige vacío debajo del texto. */
 .product-gallery {
-	align-self: start;
-	background: #e9d8c4;
-	min-height: clamp(60vw, 70vw, 400px);
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-}
-
-.product-gallery::before {
-	border: 1px solid rgba(160, 82, 45, 0.25);
-	content: "H J / 26";
-	font-size: clamp(0.55rem, 1.2vw, 0.65rem);
-	left: clamp(0.75rem, 2vw, 1.2rem);
-	letter-spacing: 0.12em;
-	padding: 0.35rem 0.45rem;
-	position: absolute;
-	top: clamp(0.75rem, 2vw, 1.2rem);
-	z-index: 1;
+  background-color: var(--color-bg-main);
+  border-radius: var(--radius-md);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
 }
 
 .product-gallery img {
-	height: 100%;
-	mix-blend-mode: multiply;
-	object-fit: contain;
-	padding: clamp(0.75rem, 3vw, 2rem);
-	width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 24px;
+}
+
+/* --- Texto y compra --- */
+
+/* Ficha vacía mientras corre la espera simulada. La galería ya tiene su
+   aspect-ratio, así que sola reserva el alto de la imagen. */
+.product-gallery--esqueleto {
+  background-color: var(--color-border-subtle);
 }
 
 .product-copy {
-	align-self: center;
-	max-width: 100%;
+  align-self: start;
 }
 
 .product-eyebrow {
-	color: var(--color-secondary);
-	font-size: clamp(0.6rem, 1.5vw, 0.72rem);
-	font-weight: 700;
-	letter-spacing: 0.14em;
-	margin-bottom: 0.75rem;
-	text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
 .product-copy h1 {
-	font-size: clamp(1.5rem, 4vw, 3.5rem);
-	margin-bottom: 1rem;
+  font-size: 1.875rem;
+  margin-bottom: 18px;
 }
 
 .product-description {
-	font-size: clamp(0.9rem, 2vw, 1rem);
-	line-height: 1.6;
-	margin-bottom: 1.2rem;
+  font-weight: 300;
+  font-size: 1.0625rem;
+  max-width: 56ch;
+  margin-bottom: 24px;
 }
 
 .product-price {
-	color: var(--color-primary);
-	font-family: var(--font-heading);
-	font-size: clamp(1.5rem, 3vw, 1.8rem);
-	margin-bottom: 1.2rem;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  margin-bottom: 24px;
 }
 
 .purchase-row {
-	align-items: stretch;
-	display: flex;
-	gap: 0.5rem;
-	margin-bottom: 1.2rem;
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
 .quantity-control {
-	align-items: center;
-	border: 1px solid var(--color-primary);
-	display: flex;
-	flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
 }
 
-.quantity-control button,
-.quantity-control output {
-	background: transparent;
-	border: 0;
-	color: var(--color-text-dark);
-	font: inherit;
-	height: clamp(2.5rem, 6vw, 3.1rem);
-	text-align: center;
-	width: clamp(2rem, 5vw, 2.6rem);
+.quantity-control__boton {
+  width: 44px;
+  height: 100%;
+  min-height: 48px;
+  background-color: transparent;
+  border: 0;
+  color: var(--color-text-dark);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: color var(--transition);
 }
 
-.quantity-control button {
-	cursor: pointer;
-	font-size: 1rem;
+.quantity-control__boton:hover:enabled {
+  color: var(--color-primary);
 }
 
-.quantity-control button:hover {
-	color: var(--color-primary);
+.quantity-control__boton:disabled {
+  color: var(--color-border-subtle);
+  cursor: not-allowed;
 }
 
+.quantity-control__valor {
+  min-width: 32px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+/* Mismo lenguaje que .boton--primario, pero ocupando el ancho que queda. */
 .add-button {
-	background: var(--color-primary);
-	border: 1px solid var(--color-primary);
-	color: var(--color-white);
-	cursor: pointer;
-	flex: 1;
-	font: inherit;
-	font-size: clamp(0.6rem, 1.5vw, 0.72rem);
-	font-weight: 700;
-	letter-spacing: 0.1em;
-	min-height: clamp(2.5rem, 6vw, 3.1rem);
-	padding: 0 0.75rem;
-	text-transform: uppercase;
-	transition: background var(--transition), color var(--transition);
+  flex: 1;
+  min-height: 48px;
+  padding: 0 24px;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  color: var(--color-bg-main);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition),
+              color var(--transition);
 }
 
-.add-button:hover,
-.add-button:focus-visible {
-	background: var(--color-accent-gold);
-	border-color: var(--color-accent-gold);
+.add-button:hover {
+  background-color: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
+  color: var(--color-text-dark);
+}
+
+/* Confirmación al agregar: verde salvia, el color de la marca para lo que salió bien. */
+.add-button.is-agregado {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-text-dark);
 }
 
 .purchase-note {
-	border-bottom: 1px solid var(--color-border-subtle);
-	border-top: 1px solid var(--color-border-subtle);
-	color: #5a5048;
-	font-size: clamp(0.7rem, 1.5vw, 0.8rem);
-	padding: 0.75rem 0;
+  font-weight: 300;
+  font-size: 0.875rem;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 18px;
 }
 
+/* --- Especificaciones --- */
+
 .specs {
-	grid-column: 1 / -1;
-	padding-top: 1.5rem;
-	margin-top: 2rem;
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 40px;
 }
 
 .specs h2 {
-	border-bottom: 2px solid var(--color-accent-gold);
-	display: inline-block;
-	font-size: clamp(1.1rem, 3vw, 1.4rem);
-	margin-bottom: 1.2rem;
-	padding-bottom: 0.4rem;
+  font-size: 1.25rem;
+  margin-bottom: 28px;
 }
 
 .spec-list {
-	display: grid;
-	grid-template-columns: 1fr;
-	list-style: none;
-	gap: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
 }
 
-.spec-list li {
-	border-left: 0;
-	border-bottom: 1px solid var(--color-border-subtle);
-	padding: 0.75rem 0;
+.spec-list__item {
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: 16px 0;
 }
 
-.spec-list li:last-child {
-	border-bottom: 0;
+.spec-list__item:last-child {
+  border-bottom: 0;
 }
 
-.spec-list strong {
-	color: var(--color-primary);
-	display: block;
-	font-size: clamp(0.6rem, 1.5vw, 0.68rem);
-	letter-spacing: 0.1em;
-	margin-bottom: 0.25rem;
-	text-transform: uppercase;
+.spec-list dt {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-bottom: 6px;
 }
 
-.spec-list span {
-	font-size: clamp(0.85rem, 2vw, 0.9rem);
+.spec-list dd {
+  font-weight: 300;
+  font-size: 0.9375rem;
+}
+
+/* --- Pieza no encontrada --- */
+
+.product-detail--error {
+  grid-template-columns: 1fr;
 }
 
 .product-error {
-	text-align: center;
-	padding: clamp(1rem, 5vw, 2rem) 0;
+  padding: 56px 0 72px;
+  max-width: 46ch;
 }
 
 .product-error h1 {
-	margin-bottom: 1rem;
-	font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: 1.75rem;
+  margin-bottom: 16px;
 }
 
-.product-error a {
-	border-bottom: 1px solid currentColor;
-	font-weight: 500;
+.product-error p {
+  font-weight: 300;
+  margin-bottom: 28px;
 }
 
-/* ── TABLET BREAKPOINT (768px) ── */
-@media (min-width: 768px) {
-	.product-page {
-		padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3.5rem);
-	}
+/* --- Tablet --- */
 
-	/* Grid de 2 columnas en tablet */
-	.product-detail {
-		grid-template-columns: 1fr 1fr;
-		gap: clamp(2rem, 5vw, 4rem);
-	}
+@media (min-width: 700px) {
+  .product-page {
+    padding: 36px 0 80px;
+  }
 
-	.product-gallery {
-		align-self: start;
-		min-height: clamp(350px, 50vw, 500px);
-	}
+  .product-detail {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
 
-	.product-copy {
-		max-width: 100%;
-	}
+  .product-copy h1 {
+    font-size: 2.25rem;
+  }
 
-	.product-copy h1 {
-		font-size: clamp(1.8rem, 4.5vw, 3.2rem);
-	}
-
-	.specs h2 {
-		font-size: 1.3rem;
-	}
-
-	/* 2 columnas en specs para tablet */
-	.spec-list {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 0 2rem;
-	}
-
-	.spec-list li {
-		border-left: 1px solid var(--color-border-subtle);
-		border-bottom: 0;
-		padding: 0.75rem 0 0.75rem 1.5rem;
-	}
-
-	.spec-list li:nth-child(odd) {
-		border-left: 0;
-		padding-left: 0;
-	}
-
+  .spec-list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+  }
 }
 
-/* ── DESKTOP BREAKPOINT (1024px) ── */
-@media (min-width: 1024px) {
-	.product-page {
-		padding: clamp(2.5rem, 7vw, 5rem) clamp(2rem, 5vw, 4rem);
-	}
+/* --- Escritorio --- */
 
-	.product-detail {
-		grid-template-columns: 1.08fr 0.92fr;
-		gap: clamp(3rem, 6vw, 5.5rem);
-	}
+@media (min-width: 1000px) {
+  .product-detail {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+  }
 
-	.product-gallery {
-		min-height: min(62vw, 620px);
-	}
+  .product-copy h1 {
+    font-size: 2.75rem;
+  }
 
-	.product-copy {
-		align-self: center;
-		max-width: 500px;
-	}
+  .specs {
+    margin-top: 24px;
+  }
 
-	.product-copy h1 {
-		font-size: clamp(2.5rem, 5vw, 4rem);
-	}
-
-	.specs h2 {
-		font-size: 1.4rem;
-	}
-
-	/* 3 columnas en specs para desktop */
-	.spec-list {
-		grid-template-columns: repeat(3, 1fr);
-		gap: 0;
-	}
-
-	.spec-list li {
-		border-left: 1px solid var(--color-border-subtle);
-		border-bottom: 0;
-		padding: 0.5rem 1.25rem 0.75rem;
-	}
-
-	.spec-list li:nth-child(3n + 1) {
-		border-left: 0;
-		padding-left: 0;
-	}
-
+  .spec-list {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 48px;
+  }
 }

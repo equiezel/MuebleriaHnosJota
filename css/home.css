@@ -146,28 +146,14 @@
 }
 
 /* Tarjetas vacías que ocupan el lugar de las reales mientras carga,
-   para que la grilla no crezca de golpe y empuje lo de abajo. */
+   para que la grilla no crezca de golpe y empuje lo de abajo.
+   Las líneas grises (.esqueleto-linea) están en css/styles.css. */
 .producto-card--esqueleto {
   border-color: var(--color-border-subtle);
 }
 
 .producto-card--esqueleto .producto-card__figura {
   height: 232px;
-}
-
-.esqueleto-linea {
-  background-color: var(--color-border-subtle);
-  border-radius: var(--radius-sm);
-  height: 11px;
-  margin-bottom: 12px;
-}
-
-.esqueleto-linea--corta {
-  width: 45%;
-}
-
-.esqueleto-linea--media {
-  width: 70%;
 }
 
 /* Mensajes de error */

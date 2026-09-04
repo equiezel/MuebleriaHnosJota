@@ -1,19 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Catálogo completo de muebles de Hermanos Jota."
-    />
-    <title>Catálogo | Hermanos Jota</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/catalogo.css" />
-  </head>
-  <body>
-    
-<header class="site-header">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo completo de Hermanos Jota: once piezas de madera nativa certificada FSC®, hechas a mano en San Cristóbal, Buenos Aires.">
+  <title>Catálogo | Hermanos Jota</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body>
+
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <!-- Header -->
+  <header class="site-header">
     <div class="site-header__inner contenedor">
 
       <a class="marca" href="index.html">
@@ -25,13 +29,13 @@
       <nav class="nav-principal" aria-label="Navegación principal">
         <ul class="nav-principal__lista">
           <li><a href="index.html">Inicio</a></li>
-          <li><a class="is-activa" href="productos.html" aria-current="page">Catálogo</a></li>
+          <li><a href="productos.html">Catálogo</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
 
-      <button class="boton-carrito" id="boton-carrito" type="button" disabled
-              title="El panel del carrito llega con js/carrito.js">
+      <!-- js/main.js lo habilita y le pone el aria-label con la cantidad. -->
+      <button class="boton-carrito" id="boton-carrito" type="button" disabled>
         Carrito
         <span class="boton-carrito__contador" id="contador-carrito">0</span>
       </button>
@@ -39,86 +43,92 @@
     </div>
   </header>
 
-    <main>
-      <section class="catalog-intro" aria-labelledby="catalog-title">
-        <p class="eyebrow">Diseño que permanece</p>
-        <h1 id="catalog-title">Nuestro catálogo</h1>
-        <p>
-          Encontrá piezas honestas, hechas para acompañar tu casa durante años.
-        </p>
-      </section>
+  <main id="contenido">
 
-      <section class="catalog-toolbar" aria-label="Herramientas del catálogo">
-        <label class="search-field" for="product-search">
-          <span aria-hidden="true">⌕</span>
-          <input
-            id="product-search"
-            type="search"
-            placeholder="Buscar por nombre o descripción..."
-            autocomplete="off"
-          />
-        </label>
-        <p id="product-count" class="product-count" aria-live="polite">
-          Cargando productos...
-        </p>
-      </section>
+    <section class="catalog-intro contenedor" aria-labelledby="catalog-title">
+      <p class="eyebrow">Diseño que permanece</p>
+      <h1 id="catalog-title">Nuestro catálogo</h1>
+      <p class="catalog-intro__bajada">
+        Once piezas honestas, hechas para acompañar tu casa durante años.
+      </p>
+    </section>
 
+    <section class="catalog-toolbar contenedor" aria-label="Buscar en el catálogo">
+      <label class="search-field" for="product-search">
+        <span class="search-field__icono" aria-hidden="true">⌕</span>
+        <span class="search-field__etiqueta">Buscar piezas</span>
+        <input
+          id="product-search"
+          type="search"
+          placeholder="Buscar por nombre o descripción…"
+          autocomplete="off">
+      </label>
+      <p id="product-count" class="product-count" role="status">
+        Cargando productos…
+      </p>
+    </section>
+
+    <div class="contenedor">
+      <!-- Las tarjetas las inyecta js/catalogo.js -->
       <section
         id="product-grid"
         class="product-grid"
-        aria-live="polite"
         aria-busy="true"
-        aria-label="Productos disponibles"
-      >
-        <div class="catalog-status">Estamos preparando el catálogo...</div>
+        aria-label="Productos disponibles">
+        <div class="catalog-status">Estamos preparando el catálogo…</div>
       </section>
-    </main>
+    </div>
 
-    <footer class="site-footer">
-      <div class="site-footer__inner contenedor">
-        <div class="site-footer__marca">
-          <img class="marca__simbolo" src="assets/logo/logo.svg" alt=""
-               width="500" height="500" loading="lazy" decoding="async">
-          <p class="site-footer__lema">
-            Muebles que no solo cumplen una función: alimentan el alma.
-          </p>
-        </div>
+  </main>
 
-        <div class="site-footer__bloque">
-          <h2>Showroom y taller</h2>
-          <p>Av. San Juan 2847<br>C1232AAB · San Cristóbal, CABA</p>
-          <p>Lunes a viernes, 10:00 a 19:00<br>Sábados, 10:00 a 14:00</p>
-        </div>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner contenedor">
 
-        <div class="site-footer__bloque">
-          <h2>Contacto</h2>
-          <ul>
-            <li><a href="mailto:info@hermanosjota.com.ar">info@hermanosjota.com.ar</a></li>
-            <li><a href="mailto:ventas@hermanosjota.com.ar">ventas@hermanosjota.com.ar</a></li>
-            <li><a href="https://wa.me/541145678900" target="_blank" rel="noopener">WhatsApp +54 11 4567-8900</a></li>
-          </ul>
-        </div>
-
-        <div class="site-footer__bloque">
-          <h2>Seguinos</h2>
-          <ul>
-            <li><a href="https://www.instagram.com/hermanosjota_ba" target="_blank" rel="noopener">Instagram @hermanosjota_ba</a></li>
-            <li><a href="https://www.hermanosjota.com.ar" target="_blank" rel="noopener">www.hermanosjota.com.ar</a></li>
-          </ul>
-        </div>
+      <div class="site-footer__marca">
+        <img class="marca__simbolo" src="assets/logo/logo.svg" alt=""
+             width="500" height="500" loading="lazy" decoding="async">
+        <p class="site-footer__lema">
+          Muebles que no solo cumplen una función: alimentan el alma.
+        </p>
       </div>
 
-      <div class="site-footer__creditos">
-        <div class="contenedor">
-          <p>© 2026 Hermanos Jota. Todas las piezas se fabrican en Buenos Aires.</p>
-          <p>Sitio desarrollado como trabajo práctico — Curso Full-Stack, ITBA.</p>
-        </div>
+      <div class="site-footer__bloque">
+        <h2>Showroom y taller</h2>
+        <p>Av. San Juan 2847<br>C1232AAB · San Cristóbal, CABA</p>
+        <p>Lunes a viernes, 10:00 a 19:00<br>Sábados, 10:00 a 14:00</p>
       </div>
-    </footer>
 
-    <script src="js/data.js"></script>
-	<script src="js/carrito.js"></script>
-	<script src="js/main.js"></script>
-    <script src="js/catalogo.js"></script>
-  </body>
+      <div class="site-footer__bloque">
+        <h2>Contacto</h2>
+        <ul>
+          <li><a href="mailto:info@hermanosjota.com.ar">info@hermanosjota.com.ar</a></li>
+          <li><a href="mailto:ventas@hermanosjota.com.ar">ventas@hermanosjota.com.ar</a></li>
+          <li><a href="https://wa.me/541145678900" target="_blank" rel="noopener">WhatsApp +54 11 4567-8900</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__bloque">
+        <h2>Seguinos</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/hermanosjota_ba" target="_blank" rel="noopener">Instagram @hermanosjota_ba</a></li>
+          <li><a href="https://www.hermanosjota.com.ar" target="_blank" rel="noopener">www.hermanosjota.com.ar</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="site-footer__creditos">
+      <div class="contenedor">
+        <p>© 2026 Hermanos Jota. Todas las piezas se fabrican en Buenos Aires.</p>
+        <p>Sitio desarrollado como trabajo práctico — Curso Full-Stack, ITBA.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/catalogo.js"></script>
+</body>
 </html>

@@ -1,14 +1,15 @@
-@import "./styles.css";
+/* css/styles.css se carga antes que esta hoja desde el <head> de contacto.html. */
 
 .container {
-  height: 90vh;
-  min-height: 80vh;
+  /* Antes era height: 90vh. Con el footer del sitio debajo, eso dejaba
+     un hueco largo; ahora la altura la marca la tarjeta más el aire. */
+  min-height: 60vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 2rem;
+  padding: 4rem 2rem;
   box-sizing: border-box;
 
   background:
@@ -44,7 +45,7 @@
    TÍTULO
 ───────────── */
 
-.form h3 {
+.form h1 {
   width: 100%;
   margin: 0 0 0.5rem;
 
@@ -236,7 +237,7 @@
     padding: 2rem 1.5rem;
   }
 
-  .form h3 {
+  .form h1 {
     font-size: 1.5rem;
   }
 }
@@ -246,7 +247,7 @@
     padding: 1.5rem 1rem;
   }
 
-  .form h3 {
+  .form h1 {
     font-size: 1.35rem;
   }
 }

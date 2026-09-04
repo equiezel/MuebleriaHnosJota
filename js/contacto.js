@@ -1,46 +1,117 @@
+// Validación del formulario de consulta.
+// El <form> lleva novalidate: los mensajes los escribimos nosotros en el DOM,
+// así todos los errores se ven igual y en el mismo lugar.
+
 const formulario = document.getElementById("formContacto");
+const campoNombre = document.getElementById("nombre");
+const campoEmail = document.getElementById("email");
+const campoMensaje = document.getElementById("mensaje");
+
+const errorNombre = document.getElementById("errorNombre");
+const errorEmail = document.getElementById("errorEmail");
+const errorMensaje = document.getElementById("errorMensaje");
+
 const contadorMensaje = document.getElementById("contadorMensaje");
+const mensajeExito = document.getElementById("mensajeExito");
 
-formulario.addEventListener("submit", (event) => {
-  const nombre = document.getElementById("nombre");
-  const email = document.getElementById("email");
-  const mensaje = document.getElementById("mensaje");
+// algo@algo.algo, sin espacios. Alcanza para avisar de un error de tipeo;
+// la validación de verdad la hace el servidor cuando exista.
+const FORMATO_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-  const errorNombre = document.getElementById("errorNombre");
-  const errorEmail = document.getElementById("errorEmail");
-  const errorMensaje = document.getElementById("errorMensaje");
-  errorNombre.textContent = "";
-  errorEmail.textContent = "";
-  errorMensaje.textContent = "";
+// Muestra u oculta el error de un campo y lo marca para los lectores de pantalla.
+function marcarError(campo, contenedorError, texto) {
+  contenedorError.textContent = texto;
+
+  if (texto === "") {
+    campo.removeAttribute("aria-invalid");
+  } else {
+    campo.setAttribute("aria-invalid", "true");
+  }
+}
+
+function limpiarErrores() {
+  marcarError(campoNombre, errorNombre, "");
+  marcarError(campoEmail, errorEmail, "");
+  marcarError(campoMensaje, errorMensaje, "");
+}
+
+function actualizarContador() {
+  contadorMensaje.textContent =
+    campoMensaje.value.length + "/" + campoMensaje.maxLength;
+}
+
+// Devuelve el primer campo con problema, o null si está todo bien.
+function validar() {
+  let primerError = null;
+
+  if (campoNombre.value.trim() === "") {
+    marcarError(campoNombre, errorNombre, "Escribí tu nombre para saber cómo llamarte.");
+    primerError = primerError || campoNombre;
+  }
+
+  const email = campoEmail.value.trim();
+
+  if (email === "") {
+    marcarError(campoEmail, errorEmail, "Necesitamos un email para poder responderte.");
+    primerError = primerError || campoEmail;
+  } else if (FORMATO_EMAIL.test(email) === false) {
+    marcarError(
+      campoEmail,
+      errorEmail,
+      "Ese email no parece completo. Revisá que tenga @ y un dominio."
+    );
+    primerError = primerError || campoEmail;
+  }
+
+  if (campoMensaje.value.trim() === "") {
+    marcarError(campoMensaje, errorMensaje, "Contanos qué pieza te interesa.");
+    primerError = primerError || campoMensaje;
+  }
+
+  return primerError;
+}
+
+formulario.addEventListener("submit", function (evento) {
+  evento.preventDefault();
+
+  limpiarErrores();
   mensajeExito.textContent = "";
 
-  event.preventDefault();
-  let errores = false;
-  if (nombre.value.trim() === "") {
-    errorNombre.textContent = "El nombre es obligatorio.";
-    errores = true;
-  }
-  if (email.value.trim() === "") {
-    errorEmail.textContent = "El email es obligatorio.";
-    errores = true;
-  }
-  if (mensaje.value.trim() === "") {
-    errorMensaje.textContent = "El mensaje es obligatorio.";
-    errores = true;
-  }
-  if (errores) {
+  const primerError = validar();
+
+  if (primerError !== null) {
+    // El foco va al primer problema: en celular, el error puede quedar fuera de pantalla.
+    primerError.focus();
     return;
   }
-  const datos = new FormData(formulario);
-  const consulta = Object.fromEntries(datos);
+
+  const consulta = Object.fromEntries(new FormData(formulario));
+
+  // No hay backend: la consulta queda en la consola, como pide la consigna.
+  console.log("Consulta recibida:", consulta);
+
   formulario.reset();
-  contadorMensaje.textContent = "";
-  console.log(consulta);
-  mensajeExito.textContent = "¡Consulta enviada correctamente!";
+  limpiarErrores();
+  actualizarContador();
+
+  mensajeExito.textContent =
+    "¡Gracias! Te respondemos dentro de las próximas 48 horas hábiles.";
 });
 
-mensaje.addEventListener("input", () => {
-  const cantidad = mensaje.value.length;
-  const maxLength = mensaje.maxLength;
-  contadorMensaje.textContent = `${cantidad}/${maxLength}`;
+// El contador se actualiza al tipear y arranca en 0/200 desde el HTML,
+// así el bloque no cambia de alto cuando aparece.
+campoMensaje.addEventListener("input", actualizarContador);
+
+// Al corregir un campo, su error desaparece sin esperar a reenviar.
+[campoNombre, campoEmail, campoMensaje].forEach(function (campo) {
+  campo.addEventListener("input", function () {
+    if (campo.getAttribute("aria-invalid") === "true") {
+      const contenedor = document.getElementById(
+        "error" + campo.id.charAt(0).toUpperCase() + campo.id.slice(1)
+      );
+      marcarError(campo, contenedor, "");
+    }
+  });
 });
+
+actualizarContador();
